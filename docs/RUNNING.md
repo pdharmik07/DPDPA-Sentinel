@@ -228,7 +228,7 @@ Prisma schema or the rule pack.
 |---|---|
 | `The token '&&' is not a valid statement separator` | Windows PowerShell 5.1. Run each command separately, as written above. |
 | `Missing script: "db:local:setup"` | Run it from the repository root or from `backend/` — both work. |
-| `port 55432 is already in use` | A previous PostgreSQL is still running. Stop it, or use `EMBEDDED_PG_PORT=55440`. |
+| `port 55432 is still in use after 15s` | You already have `npm run db:local` running in another terminal. Switch to it and press Ctrl+C, then retry. This guard is what stops two servers fighting over one database. |
 | `embedded postgres harness failed` | Delete `backend/.pgdata` and re-run `npm run db:local:setup`. |
 | Health returns 503 `"database":"down"` | PostgreSQL is not running. Start step 3/4 again. |
 | API calls fail with a CORS error | The frontend is on a port not in `FRONTEND_URL`. Add it in `backend/.env` and restart the backend. |

@@ -67,8 +67,13 @@ async function assertPortFree(port: number, graceMs = 15_000): Promise<void> {
   }
 
   throw new Error(
-    `port ${port} is still in use after ${graceMs / 1000}s — another postgres is probably running.\n` +
-      `  Stop it, or pick another port:  EMBEDDED_PG_PORT=55440 npm run db:local:setup`,
+    `port ${port} is still in use after ${graceMs / 1000}s.\n\n` +
+      `  You most likely already have "npm run db:local" running in another terminal.\n` +
+      `  Switch to it and press Ctrl+C, then run this again.\n\n` +
+      `  To see what is holding the port (PowerShell):\n` +
+      `    Get-NetTCPConnection -LocalPort ${port} -State Listen | Select-Object OwningProcess\n\n` +
+      `  Or run this instance on a different port:\n` +
+      `    $env:EMBEDDED_PG_PORT=${port + 8}; npm run db:local`,
   );
 }
 
@@ -190,11 +195,11 @@ main().catch((error: unknown) => {
           : String(error);
 
   console.error(`\nembedded postgres harness failed:\n${detail}\n`);
-  console.error('Common causes:');
-  console.error(`  · another postgres is already on port ${PORT}`);
-  console.error(`  · a half-written data directory — delete ${dataDir} and retry`);
-  console.error('  · leftover postgres processes from a previous run holding shared memory');
-  console.error('\nTo start completely fresh:');
-  console.error(`  npx tsx scripts/withDb.ts "<command>"        (no --persist: uses a throwaway cluster)`);
+  console.error('Most likely causes, in order:');
+  console.error('  1. "npm run db:local" is already running in another terminal — Ctrl+C there, then retry');
+  console.error(`  2. a half-written data directory — delete ${dataDir}, then: npm run db:local:setup`);
+  console.error('  3. leftover postgres processes from a previous run holding shared memory');
+  console.error('\nTo start completely fresh with a throwaway cluster:');
+  console.error('  npx tsx scripts/withDb.ts "npx prisma migrate deploy"');
   process.exit(1);
 });
