@@ -231,7 +231,9 @@ First run downloads roughly 90 MB of models, plus PyTorch, which is a further ~2
 
 **Cold start.** The first `/analyze` call loads the models from disk and took ~44 seconds when
 measured. `NLP_TIMEOUT_MS` is 45s to absorb that, but the cleanest fix is to load them at startup —
-set `NLP_WARM_START=true` in `nlp-service/.env` before launching uvicorn. Without it, the very first
+copy `nlp-service/.env.example` to `nlp-service/.env` and set `NLP_WARM_START=true` in it.
+That is a **line inside a file**, not a shell command — typing it at a PowerShell prompt gives
+"the term is not recognized". Without it, the very first
 scan may fall back to the deterministic engine and report `nlpAvailable: false`; every scan after
 that uses the semantic layer (~1.2s for a typical policy).
 

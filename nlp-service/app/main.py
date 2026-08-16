@@ -14,12 +14,18 @@ import os
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
+from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .models.schemas import HealthResponse
-from .routers import analyze
-from .services import nlp
+# Load .env BEFORE any os.getenv below, or the settings this service documents
+# in .env.example (LOG_LEVEL, ALLOWED_ORIGINS, NLP_WARM_START) are silently
+# ignored — the file existed and was advertised, but nothing ever read it.
+load_dotenv()
+
+from .models.schemas import HealthResponse  # noqa: E402
+from .routers import analyze  # noqa: E402
+from .services import nlp  # noqa: E402
 
 logging.basicConfig(
     level=os.getenv("LOG_LEVEL", "INFO").upper(),
