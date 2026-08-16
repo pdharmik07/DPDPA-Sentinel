@@ -1,0 +1,69 @@
+{
+  "name": "dpdpa-sentinel-backend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "DPDPA Sentinel backend — deterministic DPDPA 2023 / DPDP Rules 2025 compliance assessment engine",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "rules:build": "tsx scripts/buildRulePack.ts",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:deploy": "prisma migrate deploy",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:reset": "prisma migrate reset --force",
+    "db:local": "tsx scripts/withDb.ts \"npm run dev\" --persist",
+    "db:local:setup": "tsx scripts/withDb.ts \"npx prisma migrate deploy && npx tsx prisma/seed.ts\" --persist",
+    "test:engine": "vitest run tests/engine.test.ts",
+    "test:api": "vitest run tests/api.integration.test.ts"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
+  "dependencies": {
+    "@node-rs/argon2": "^2.0.2",
+    "@prisma/client": "^6.14.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.0.1",
+    "file-type": "^19.6.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mammoth": "^1.9.0",
+    "multer": "^2.0.2",
+    "pdfjs-dist": "^4.9.155",
+    "pdfkit": "^0.15.1",
+    "pino": "^9.5.0",
+    "pino-http": "^10.3.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^22.10.0",
+    "@types/pdfkit": "^0.13.9",
+    "@types/supertest": "^6.0.2",
+    "embedded-postgres": "^18.4.0-beta.17",
+    "pino-pretty": "^13.0.0",
+    "prisma": "^6.14.0",
+    "supertest": "^7.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.2",
+    "vitest": "^3.2.4"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "prisma@6.19.3": true,
+    "@prisma/client@6.19.3": true,
+    "@prisma/engines@6.19.3": true,
+    "@embedded-postgres/windows-x64@18.4.0-beta.17": true
+  }
+}

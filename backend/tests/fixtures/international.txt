@@ -1,0 +1,57 @@
+GLOBALSAAS PRIVACY NOTICE
+
+GlobalSaaS Technologies Private Limited (the Data Fiduciary) provides workflow software. Our Data
+Protection Officer, based in India, can be reached at dpo@globalsaas.io.
+
+NOTICE
+This Notice is provided before we collect your personal data. We collect your name, work email,
+IP address and product usage events, for the specific purpose of providing and securing the
+service and for billing.
+
+CONSENT
+The consent we seek is free, specific, informed, unconditional and unambiguous, and is given
+through a clear affirmative action. Each purpose has its own unticked checkbox. You may withdraw
+your consent at any time from Account Settings > Privacy, and withdrawal is as easy as giving
+consent.
+
+INTERNATIONAL TRANSFERS
+Your personal data is primarily stored on servers located in India. Certain Data Processors we
+engage may process it in the United States, Singapore and Ireland. We do not transfer personal
+data to any country or territory notified as restricted by the Central Government under Section
+16 of the DPDPA, 2023, and all such transfers are protected by contractual safeguards and
+encryption in transit.
+
+DATA PROCESSORS
+We engage Data Processors only under a valid written contract which limits them to processing on
+our documented instructions and imposes reasonable security safeguards. We remain responsible
+for compliance.
+
+SIGNIFICANT DATA FIDUCIARY
+We have been notified as a Significant Data Fiduciary. We undertake a Data Protection Impact
+Assessment and an independent audit once every twelve months and furnish a report of significant
+observations to the Data Protection Board. Our Data Protection Officer is based in India and
+reports to the board of directors.
+
+SECURITY
+We encrypt data in transit with TLS 1.3 and at rest with AES-256, enforce role-based access
+control and multi-factor authentication, retain access logs for one year, and maintain
+data backups. We run mandatory annual privacy training and quarterly access reviews.
+
+BREACH NOTIFICATION
+We will intimate each affected Data Principal without delay and provide the Data Protection Board
+with detailed information within seventy-two hours of becoming aware of a breach.
+
+RETENTION AND ERASURE
+We retain account data for 36 months after account closure. When you withdraw consent, or once
+the purpose is no longer served, we erase that personal data and instruct our Data Processors to
+erase their copies. Where the Income-tax Act, 1961 requires us to retain invoices for longer, we
+retain them for that period and erase them thereafter.
+
+YOUR RIGHTS
+Request a summary of your personal data, correction of inaccurate or incomplete data, or erasure
+from Account Settings > Privacy > My Data, or by writing to dpo@globalsaas.io. You may nominate
+another individual to exercise your rights in the event of death or incapacity.
+
+GRIEVANCE REDRESSAL
+Grievance Officer: Mr S. Menon, grievance@globalsaas.io. We respond within 15 days and in no case
+later than ninety days. You may thereafter complain to the Data Protection Board of India.

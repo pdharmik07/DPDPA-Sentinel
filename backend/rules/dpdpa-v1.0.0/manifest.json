@@ -1,0 +1,230 @@
+{
+  "pack": "dpdpa-sentinel-core",
+  "ruleVersion": "1.0.0",
+  "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+  "sourceUrl": "https://www.dpdpa.com/",
+  "generatedAt": "2026-08-16",
+  "scoringModel": "design-doc-1.0",
+  "totals": {
+    "rules": 41,
+    "designDocumentRules": 37,
+    "supplementaryRules": 4,
+    "mandatory": 22,
+    "conditional": 8,
+    "recommended": 11,
+    "requiresLiveScan": 2
+  },
+  "categories": [
+    {
+      "id": "notice",
+      "order": 1,
+      "label": "Notice Requirements",
+      "ruleCount": 5,
+      "ruleIds": [
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5"
+      ],
+      "categoryWeight": 13,
+      "designDocWeight": "MANDATORY"
+    },
+    {
+      "id": "consent",
+      "order": 2,
+      "label": "Consent Validity",
+      "ruleCount": 5,
+      "ruleIds": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5"
+      ],
+      "categoryWeight": 13,
+      "designDocWeight": "MANDATORY"
+    },
+    {
+      "id": "children",
+      "order": 3,
+      "label": "Children's Data Protection",
+      "ruleCount": 3,
+      "ruleIds": [
+        "K1",
+        "K2",
+        "K3"
+      ],
+      "categoryWeight": 6,
+      "designDocWeight": "CONDITIONAL"
+    },
+    {
+      "id": "grounds",
+      "order": 4,
+      "label": "Grounds for Processing / Legitimate Use",
+      "ruleCount": 2,
+      "ruleIds": [
+        "G1",
+        "G2"
+      ],
+      "categoryWeight": 2,
+      "designDocWeight": "RECOMMENDED"
+    },
+    {
+      "id": "accuracy",
+      "order": 5,
+      "label": "Data Accuracy & Quality",
+      "ruleCount": 1,
+      "ruleIds": [
+        "Q1"
+      ],
+      "categoryWeight": 1,
+      "designDocWeight": "RECOMMENDED"
+    },
+    {
+      "id": "security",
+      "order": 6,
+      "label": "Security Safeguards",
+      "ruleCount": 2,
+      "ruleIds": [
+        "S1",
+        "S2"
+      ],
+      "categoryWeight": 6,
+      "designDocWeight": "MANDATORY"
+    },
+    {
+      "id": "breach",
+      "order": 7,
+      "label": "Breach Notification",
+      "ruleCount": 2,
+      "ruleIds": [
+        "B1",
+        "B2"
+      ],
+      "categoryWeight": 6,
+      "designDocWeight": "MANDATORY"
+    },
+    {
+      "id": "retention",
+      "order": 8,
+      "label": "Data Retention & Erasure",
+      "ruleCount": 3,
+      "ruleIds": [
+        "R1",
+        "R2",
+        "R3"
+      ],
+      "categoryWeight": 9,
+      "designDocWeight": "MANDATORY"
+    },
+    {
+      "id": "grievance",
+      "order": 9,
+      "label": "Grievance Redressal Mechanism",
+      "ruleCount": 2,
+      "ruleIds": [
+        "GR1",
+        "GR2"
+      ],
+      "categoryWeight": 6,
+      "designDocWeight": "MANDATORY"
+    },
+    {
+      "id": "dpo",
+      "order": 10,
+      "label": "DPO / Contact Person Disclosure",
+      "ruleCount": 1,
+      "ruleIds": [
+        "D1"
+      ],
+      "categoryWeight": 3,
+      "designDocWeight": "MANDATORY"
+    },
+    {
+      "id": "rights",
+      "order": 11,
+      "label": "Right to Access & Correction",
+      "ruleCount": 3,
+      "ruleIds": [
+        "A1",
+        "A2",
+        "A3"
+      ],
+      "categoryWeight": 9,
+      "designDocWeight": "MANDATORY"
+    },
+    {
+      "id": "nomination",
+      "order": 12,
+      "label": "Right to Nominate",
+      "ruleCount": 1,
+      "ruleIds": [
+        "NM1"
+      ],
+      "categoryWeight": 1,
+      "designDocWeight": "RECOMMENDED"
+    },
+    {
+      "id": "cross_border",
+      "order": 13,
+      "label": "Cross-Border Data Transfer Disclosure",
+      "ruleCount": 2,
+      "ruleIds": [
+        "X1",
+        "X2"
+      ],
+      "categoryWeight": 4,
+      "designDocWeight": "CONDITIONAL"
+    },
+    {
+      "id": "sdf",
+      "order": 14,
+      "label": "Significant Data Fiduciary Obligations",
+      "ruleCount": 3,
+      "ruleIds": [
+        "SDF1",
+        "SDF2",
+        "SDF3"
+      ],
+      "categoryWeight": 6,
+      "designDocWeight": "CONDITIONAL"
+    },
+    {
+      "id": "cookies",
+      "order": 15,
+      "label": "Cookie & Tracker Behaviour Cross-Check",
+      "ruleCount": 2,
+      "ruleIds": [
+        "BC1",
+        "BC2"
+      ],
+      "categoryWeight": 2,
+      "designDocWeight": "RECOMMENDED"
+    },
+    {
+      "id": "additional",
+      "order": 16,
+      "label": "Additional Statutory Obligations",
+      "ruleCount": 4,
+      "ruleIds": [
+        "AX1",
+        "AX2",
+        "AX3",
+        "AX4"
+      ],
+      "categoryWeight": 6,
+      "designDocWeight": "RECOMMENDED"
+    }
+  ],
+  "provenance": {
+    "primary": "DPDPA Sentinel Rule Engine Design Document — 15 categories, 37 rules",
+    "supplementary": "Four Act-grounded rules (AX1-AX4) carried over from the existing frontend requirement ontology so no prior coverage is lost.",
+    "detectionPatterns": "Regex detection payloads were ported mechanically from src/lib/dpdpa/requirements.part{1,2,3}.ts; the \"portedFrom\" field on each detection records the source requirement.",
+    "citationCorrections": [
+      "N5",
+      "D1",
+      "AX2"
+    ]
+  }
+}

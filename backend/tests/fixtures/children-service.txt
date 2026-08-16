@@ -1,0 +1,54 @@
+KIDLEARN PRIVACY NOTICE
+
+1. WHO WE ARE
+KidLearn Technologies Private Limited is the Data Fiduciary for this service. Our registered
+office is at 22 MG Road, Bengaluru 560001. You can reach our Data Protection Officer at
+dpo@kidlearn.in or on +91 80 4000 1000.
+
+2. NOTICE AND WHAT WE COLLECT
+This Notice is presented to you before, or at the time of, the collection of your personal data,
+and accompanies every request for your consent. We collect the child's first name, age, grade
+level, and the parent's email address and mobile number. Each item is collected for the specific
+purpose of creating a learning profile and reporting progress to the parent.
+
+3. CHILDREN'S DATA
+Our service is directed at children under the age of eighteen. Before processing any personal
+data of a child, we obtain verifiable consent from the parent or lawful guardian. We verify that
+the individual identifying themselves as the parent is an adult by checking reliable details of
+identity and age, or through a virtual token mapped to those details issued by an authorised
+entity.
+
+We do not undertake any tracking or behavioural monitoring of children, and we do not serve
+targeted advertising directed at children.
+
+4. CONSENT
+Your consent is free, specific, informed, unconditional and unambiguous, and is given through a
+clear affirmative action. We present each purpose separately with its own unticked checkbox.
+Nothing is pre-selected. You may withdraw your consent at any time from Settings > Privacy >
+Manage Consent. Withdrawing consent is as easy as giving it.
+
+5. YOUR RIGHTS
+You may request a summary of the personal data we hold, request correction of inaccurate or
+incomplete data, and request erasure. To exercise your rights of access, correction, updating,
+erasure or nomination, write to dpo@kidlearn.in or visit Settings > Privacy > My Data. You may
+nominate another individual to exercise your rights in the event of death or incapacity.
+
+6. GRIEVANCE REDRESSAL
+Our Grievance Officer is Ms R. Iyer, reachable at grievance@kidlearn.in. We acknowledge every
+grievance within 3 working days and resolve it within 30 days. If you remain dissatisfied you may
+make a complaint to the Data Protection Board of India.
+
+7. SECURITY
+We encrypt personal data in transit using TLS 1.3 and at rest using AES-256. We enforce
+role-based access control on the principle of least privilege and maintain access logs which we
+review. We run annual staff privacy training and an annual independent security audit.
+
+8. BREACH
+In the event of a personal data breach we will intimate each affected Data Principal without
+delay, and provide the Data Protection Board with detailed information within seventy-two hours
+of becoming aware of the breach.
+
+9. RETENTION
+We retain a learning profile for 24 months after the last activity. When you withdraw consent, or
+once the purpose is no longer served, we erase that personal data and instruct every Data
+Processor acting on our behalf to erase their copies, unless retention is required by law.

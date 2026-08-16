@@ -1,0 +1,2337 @@
+[
+  {
+    "ruleId": "N1",
+    "category": "notice",
+    "categoryLabel": "Notice Requirements",
+    "title": "Notice states the personal data collected and the purpose of processing",
+    "description": "Every request for consent must be accompanied or preceded by a notice informing the Data Principal of the personal data collected and the purpose for which it is proposed to be processed.",
+    "requirement": "The policy must itemise the categories of personal data collected and state the specified purpose of each.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 5(1)(i)",
+    "ruleReference": "Rule 3(b)",
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 3(b) of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "MANDATORY",
+    "weight": 3,
+    "severity": "CRITICAL",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\b(this|our)\\s+(privacy\\s+)?(policy|notice|statement)\\s+(describes|explains|sets out|informs|tells)",
+        "\\b(we|company|organi[sz]ation)\\s+(collect|gather|obtain|receive)s?\\b[^.]{0,80}\\b(personal|information|data)\\b",
+        "\\b(information|data|personal data)\\s+(we|that we)\\s+(collect|gather|process)",
+        "\\bcategories\\s+of\\s+(personal\\s+)?(data|information)\\s+(we\\s+)?(collect|process)"
+      ],
+      "supporting": [
+        "\\bprivacy\\s+(policy|notice)\\b",
+        "\\bwhat\\s+(information|data)\\s+we\\s+collect\\b",
+        "\\btypes?\\s+of\\s+(information|data)\\b",
+        "\\bnotify|notice|inform(ed|ation about)\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Identifies the data collected",
+          "pattern": "\\b(name|e-?mail|phone|mobile|address|contact details|payment|location|device|IP address|identifier)\\b"
+        },
+        {
+          "label": "States the purpose of collection",
+          "pattern": "\\b(purpose|in order to|so that|used to|for the purpose of)\\b"
+        },
+        {
+          "label": "Identifies the entity collecting",
+          "pattern": "\\b(we are|our company|data fiduciary|controller|registered (office|address)|operated by)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "what personal data we collect",
+        "purpose of processing personal data"
+      ],
+      "portedFrom": "notice"
+    },
+    "recommendation": "Open the policy with an itemised notice: exactly which categories of personal data are collected, the specific purpose of each, and the identity of the Data Fiduciary collecting them.",
+    "remediation": "Add an itemised table at the top of the policy: each category of personal data on the left, the specific purpose it is processed for on the right.",
+    "suggestedLanguage": "\"This Notice is provided under Section 5 of the Digital Personal Data Protection Act, 2023. [Company Name], acting as the Data Fiduciary, collects the following categories of personal data: [name, email address, mobile number, ...]. Each category is collected for the specific purpose stated against it in the table below.\""
+  },
+  {
+    "ruleId": "N2",
+    "category": "notice",
+    "categoryLabel": "Notice Requirements",
+    "title": "Notice explains how to exercise rights of access, correction and erasure",
+    "description": "The notice must inform the Data Principal of the manner in which she may exercise her rights under section 6(4) and section 13.",
+    "requirement": "The policy must describe the actual mechanism — link, email or form — for exercising data principal rights.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 5(1)(ii)",
+    "ruleReference": "Rule 3(c)(ii)",
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 3(c)(ii) of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "MANDATORY",
+    "weight": 3,
+    "severity": "HIGH",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\b(to\\s+exercise|exercis(e|ing))\\b[^.]{0,60}\\b(your\\s+)?rights?\\b[^.]{0,80}\\b(contact|email|write|visit|submit|request|form|portal|settings)\\b",
+        "\\byou\\s+(may|can)\\s+(exercise|submit|make|raise|send)\\b[^.]{0,60}\\b(request|rights?)\\b",
+        "\\b(how|manner)\\s+(to|in which)\\b[^.]{0,50}\\bexercise\\b[^.]{0,40}\\brights?\\b",
+        "\\b(request|download|manage|update|delete|access|correct)\\w*\\b[^.]{0,40}\\b(from|via|at|in|using)\\b[^.]{0,50}\\b(settings|account|profile|dashboard|portal|privacy\\s+cent(re|er))\\b",
+        "\\b(settings|account|profile|privacy)\\s*>\\s*\\w+",
+        "\\b(write|email|contact)\\b[^.]{0,40}[\\w.+-]+@[\\w-]+\\.[\\w.]{2,}"
+      ],
+      "supporting": [
+        "\\byour\\s+rights\\b",
+        "\\bdata\\s+principal\\s+rights\\b",
+        "\\bexercise\\b",
+        "\\brequest\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Names a contact channel for rights requests",
+          "pattern": "\\b([\\w.+-]+@[\\w-]+\\.[\\w.]{2,}|contact\\s+us|support|help\\s*(centre|center)|web\\s*form|account\\s+settings|privacy\\s+portal)\\b"
+        },
+        {
+          "label": "Covers access, correction and erasure",
+          "pattern": "\\b(access|correct\\w*|updat\\w*|eras\\w*|delet\\w*)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "how to exercise your data protection rights",
+        "submit a request to access or delete your data"
+      ],
+      "portedFrom": null
+    },
+    "recommendation": "State plainly, in the notice itself, how a user exercises each right — the exact link, email address or in-product path — rather than only asserting the rights exist.",
+    "remediation": "Add a \"How to exercise your rights\" block naming the channel and the expected turnaround.",
+    "suggestedLanguage": "\"To exercise your rights of access, correction, updating, erasure or nomination, visit [link] or write to [privacy@example.com]. We will respond within [N] days.\""
+  },
+  {
+    "ruleId": "N3",
+    "category": "notice",
+    "categoryLabel": "Notice Requirements",
+    "title": "Notice explains how to complain to the Data Protection Board of India",
+    "description": "The notice must inform the Data Principal of the manner in which she may make a complaint to the Board.",
+    "requirement": "The policy must reference the Data Protection Board of India as an escalation route.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 5(1)(iii)",
+    "ruleReference": "Rule 3(c)(iii)",
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 3(c)(iii) of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "MANDATORY",
+    "weight": 3,
+    "severity": "HIGH",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\bdata\\s+protection\\s+board\\b",
+        "\\b(complain|approach|escalat|appeal)\\w*\\b[^.]{0,70}\\b(board|regulator|authority)\\b",
+        "\\bif\\b[^.]{0,80}\\b(not\\s+(satisfied|resolved)|unresolved|dissatisfied)\\b[^.]{0,80}\\b(board|authority|regulator)\\b"
+      ],
+      "supporting": [
+        "\\bboard\\s+of\\s+india\\b",
+        "\\bescalat\\w+\\b",
+        "\\bappeal\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Names the Data Protection Board",
+          "pattern": "\\bdata\\s+protection\\s+board\\b"
+        },
+        {
+          "label": "Explains when to escalate",
+          "pattern": "\\b(not\\s+(satisfied|resolved)|unresolved|dissatisfied|fail(s|ed)?\\s+to)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "complain to the Data Protection Board of India"
+      ],
+      "portedFrom": "board_escalation"
+    },
+    "recommendation": "State that a Data Principal who is unsatisfied with the outcome of a grievance may complain to the Data Protection Board of India under Chapter V of the Act.",
+    "remediation": "Add a sentence naming the Data Protection Board of India and noting that internal grievance redressal should be exhausted first (section 13(3)).",
+    "suggestedLanguage": "\"If your grievance is not resolved to your satisfaction, you may register a complaint with the Data Protection Board of India in the manner provided under Chapter V of the DPDPA, 2023.\""
+  },
+  {
+    "ruleId": "N4",
+    "category": "notice",
+    "categoryLabel": "Notice Requirements",
+    "title": "Notice is given before or at the time of collection",
+    "description": "The notice must accompany or precede the request for consent — not follow it.",
+    "requirement": "The policy must indicate that notice is presented at or before the point of collection.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 5(1)",
+    "ruleReference": null,
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification.",
+    "weightClass": "MANDATORY",
+    "weight": 3,
+    "severity": "MEDIUM",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\b(before|prior\\s+to|at\\s+the\\s+time\\s+of|when\\s+you|at\\s+the\\s+point\\s+of)\\b[^.]{0,60}\\b(collect\\w*|provid\\w*|submit\\w*|regist\\w*|sign(ing)?\\s+up|process\\w*)\\b",
+        "\\b(this\\s+notice|this\\s+policy)\\b[^.]{0,60}\\b(is\\s+)?(provided|presented|shown|displayed)\\b[^.]{0,50}\\b(before|prior|at\\s+the\\s+time)\\b",
+        "\\b(accompan(y|ies|ied)|preced(e|es|ed))\\b[^.]{0,50}\\b(request|consent|collection)\\b"
+      ],
+      "supporting": [
+        "\\bat\\s+the\\s+time\\b",
+        "\\bbefore\\s+we\\b",
+        "\\bprior\\s+to\\b",
+        "\\bwhen\\s+you\\s+(sign|regist|creat)\\w*"
+      ],
+      "specifics": [
+        {
+          "label": "States timing relative to collection",
+          "pattern": "\\b(before|prior\\s+to|at\\s+the\\s+time\\s+of|at\\s+the\\s+point\\s+of)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "we inform you before collecting your personal data"
+      ],
+      "portedFrom": null
+    },
+    "recommendation": "State explicitly that this notice is presented before or at the moment personal data is collected, and that consent is requested at that point.",
+    "remediation": "Add a timing sentence to the opening paragraph of the notice.",
+    "suggestedLanguage": "\"This Notice is presented to you before, or at the time of, the collection of your personal data, and accompanies every request for your consent under Section 5 of the DPDPA, 2023.\""
+  },
+  {
+    "ruleId": "N5",
+    "category": "notice",
+    "categoryLabel": "Notice Requirements",
+    "title": "Notice is in clear and plain language with an Eighth Schedule language option",
+    "description": "The Data Fiduciary must give the Data Principal the option to access the notice in English or any language specified in the Eighth Schedule to the Constitution, and requests for consent must be presented in clear and plain language.",
+    "requirement": "The policy must be written in plain language and offer an Eighth Schedule language option.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 5(3); Section 6(3)",
+    "ruleReference": "Rule 3(b)",
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 3(b) of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)). Citation corrected: the Rule Engine Design Document cited \"DPDP Rule 5\", which governs State processing for subsidies and benefits. The plain-language requirement is Rule 3(b).",
+    "weightClass": "RECOMMENDED",
+    "weight": 1,
+    "severity": "MEDIUM",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\b(plain|simple|clear|easy[- ]to[- ]understand)\\s+(language|english|terms)\\b",
+        "\\b(eighth\\s+schedule|regional\\s+languages?|indian\\s+languages?)\\b",
+        "\\b(available|provided|translated)\\s+in\\s+[^.]{0,40}\\b(hindi|gujarati|marathi|tamil|telugu|bengali|kannada)\\b"
+      ],
+      "supporting": [
+        "\\blanguage\\b",
+        "\\btranslat(e|ed|ion)\\b",
+        "\\baccessib(le|ility)\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Names available languages",
+          "pattern": "\\b(hindi|gujarati|marathi|tamil|telugu|bengali|kannada|malayalam|punjabi|odia|assamese|urdu)\\b"
+        },
+        {
+          "label": "Commits to plain language",
+          "pattern": "\\b(plain|simple|clear)\\s+language\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "available in plain language and Indian languages"
+      ],
+      "portedFrom": "notice_language"
+    },
+    "recommendation": "State that the notice is available in English and at least one Eighth Schedule language, and provide the link. Keep sentences short and avoid undefined legal jargon.",
+    "remediation": "Publish the notice in English plus at least one Eighth Schedule language and link every version.",
+    "suggestedLanguage": "\"This Notice is available in English and in Hindi, Gujarati and Marathi. You may access any version at [link]. We have written it in plain language so that you can understand it without legal assistance.\""
+  },
+  {
+    "ruleId": "C1",
+    "category": "consent",
+    "categoryLabel": "Consent Validity",
+    "title": "Consent is specific to a stated purpose, not blanket permission",
+    "description": "Consent must be free, specific, informed, unconditional and unambiguous, and limited to the personal data necessary for the specified purpose.",
+    "requirement": "The policy must tie consent to named, specific purposes rather than a general grant.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 6(1)",
+    "ruleReference": null,
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification.",
+    "weightClass": "MANDATORY",
+    "weight": 3,
+    "severity": "CRITICAL",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\b(your|obtain(ing)?|we obtain|we seek|provide (your|us with) )\\s*consent\\b",
+        "\\bconsent\\s+(is|will be|shall be)\\s+(obtained|taken|sought|required|requested)",
+        "\\b(by\\s+(clicking|checking|ticking|submitting|registering|continuing))\\b[^.]{0,60}\\b(you\\s+(consent|agree))",
+        "\\b(free|specific|informed|unconditional|unambiguous|explicit|affirmative)\\s+consent\\b"
+      ],
+      "supporting": [
+        "\\bconsent\\b",
+        "\\bopt[- ]?in\\b",
+        "\\bagree(ment)?\\s+to\\s+(the\\s+)?processing\\b",
+        "\\bpermission\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Consent is purpose-specific",
+          "pattern": "\\bconsent\\b[^.]{0,80}\\bpurpose\\b"
+        },
+        {
+          "label": "Purpose is named and limited",
+          "pattern": "\\b(specified|specific|stated|each)\\s+purpose\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "consent is specific to each purpose"
+      ],
+      "portedFrom": "consent"
+    },
+    "recommendation": "Describe how consent is captured — an unticked checkbox or equivalent affirmative action — and confirm it is requested separately for each purpose rather than bundled into the terms of service.",
+    "remediation": "Split the consent request per purpose and record each separately.",
+    "suggestedLanguage": "\"We process your personal data on the basis of your consent under Section 6 of the DPDPA, 2023. Consent is obtained through a clear affirmative action (an unticked checkbox presented alongside this Notice), is sought separately for each purpose, and is never a condition for accessing services that do not require that data.\""
+  },
+  {
+    "ruleId": "C2",
+    "category": "consent",
+    "categoryLabel": "Consent Validity",
+    "title": "Consent requires a clear affirmative action",
+    "description": "Consent must be signified by a clear affirmative action. Pre-ticked boxes and \"continued use means consent\" are not valid consent.",
+    "requirement": "The policy must describe an opt-in affirmative action and must not rely on implied or pre-checked consent.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 6(1)",
+    "ruleReference": null,
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification.",
+    "weightClass": "MANDATORY",
+    "weight": 3,
+    "severity": "CRITICAL",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\b(your|obtain(ing)?|we obtain|we seek|provide (your|us with) )\\s*consent\\b",
+        "\\bconsent\\s+(is|will be|shall be)\\s+(obtained|taken|sought|required|requested)",
+        "\\b(by\\s+(clicking|checking|ticking|submitting|registering|continuing))\\b[^.]{0,60}\\b(you\\s+(consent|agree))",
+        "\\b(free|specific|informed|unconditional|unambiguous|explicit|affirmative)\\s+consent\\b"
+      ],
+      "supporting": [
+        "\\bconsent\\b",
+        "\\bopt[- ]?in\\b",
+        "\\bagree(ment)?\\s+to\\s+(the\\s+)?processing\\b",
+        "\\bpermission\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Requires a clear affirmative action",
+          "pattern": "\\b(clear\\s+affirmative|explicit|opt[- ]?in|tick|check\\s+the\\s+box|click\\s+(accept|agree))\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [
+        "\\b(pre[- ]?(ticked|checked|selected))\\b",
+        "\\b(continued|further)\\s+use\\b[^.]{0,50}\\b(constitutes?|means?|implies|deemed)\\b[^.]{0,30}\\bconsent\\b",
+        "\\bby\\s+(using|continuing\\s+to\\s+use|browsing)\\b[^.]{0,60}\\byou\\s+(consent|agree)\\b",
+        "\\b(implied|deemed|assumed)\\s+consent\\b"
+      ],
+      "semanticConcepts": [
+        "you must tick the box to give consent",
+        "opt in by clear affirmative action"
+      ],
+      "portedFrom": "consent"
+    },
+    "recommendation": "Describe the affirmative action that captures consent — an unticked checkbox or explicit button — and remove any language that treats continued use or silence as consent.",
+    "remediation": "Replace implied-consent wording with an explicit opt-in flow; unticked by default.",
+    "suggestedLanguage": "\"We obtain your consent through a clear affirmative action: an unticked checkbox that you select yourself. We never treat continued use of the service, silence, or pre-ticked boxes as consent.\""
+  },
+  {
+    "ruleId": "C3",
+    "category": "consent",
+    "categoryLabel": "Consent Validity",
+    "title": "Consent is not bundled as a condition for the core service",
+    "description": "Consent must be limited to such personal data as is necessary for the specified purpose; unrelated collection must not be made a condition of service.",
+    "requirement": "The policy must show data collection is limited to what the purpose requires.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 6(1)",
+    "ruleReference": null,
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. The Rule Engine Design Document cites \"Sec 6(1)(a)\". Section 6(1) of the supplied Act text is not sub-divided into clauses; the anti-bundling duty rests on the \"limited to such personal data as is necessary for such specified purpose\" wording of section 6(1). Requires verification.",
+    "weightClass": "MANDATORY",
+    "weight": 3,
+    "severity": "HIGH",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\bdata\\s+minimi[sz]ation\\b",
+        "\\b(only|solely)\\s+(collect|process)\\b[^.]{0,60}\\b(necessary|required|needed|minimum)\\b",
+        "\\b(necessary|minimum|limited)\\s+(personal\\s+)?(data|information)\\b[^.]{0,60}\\bpurpose\\b",
+        "\\bno\\s+more\\s+(data|information)\\s+than\\b",
+        "\\b(do(es)?\\s+not|never)\\s+bundl\\w*",
+        "\\bbundl\\w*\\b[^.]{0,60}\\bconsent\\b",
+        "\\bconsent\\b[^.]{0,50}\\bbundl\\w*",
+        "\\b(not|never)\\s+(make|made)\\b[^.]{0,60}\\bconditional\\s+on\\s+consent\\b",
+        "\\bconditional\\s+on\\s+consent\\b[^.]{0,60}\\bnot\\s+necessary\\b",
+        "\\b(declining|refusing|opting\\s+out)\\b[^.]{0,60}\\b(does\\s+not\\s+affect|will\\s+not\\s+affect|no\\s+effect)\\b"
+      ],
+      "supporting": [
+        "\\bnecessary\\b",
+        "\\bminimum\\b",
+        "\\bproportionate\\b",
+        "\\bstrictly\\s+required\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Explicit minimisation commitment",
+          "pattern": "\\bminimi[sz]ation|minimi[sz]e\\b"
+        },
+        {
+          "label": "Collection tied to necessity",
+          "pattern": "\\b(necessary|required|needed)\\b[^.]{0,60}\\b(purpose|service|provide)\\b"
+        },
+        {
+          "label": "Addresses bundling or conditional consent explicitly",
+          "pattern": "\\b(bundl\\w*|conditional\\s+on\\s+consent|separate\\s+consent|optional)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [
+        "\\b(you\\s+must|required\\s+to)\\s+(consent|agree)\\b[^.]{0,60}\\b(to\\s+use|in\\s+order\\s+to\\s+use|to\\s+access)\\b"
+      ],
+      "semanticConcepts": [
+        "we only collect data necessary for the service",
+        "consent is not bundled with the service"
+      ],
+      "portedFrom": "data_minimisation"
+    },
+    "recommendation": "State that only data necessary for each stated purpose is collected, and mark optional fields as optional at the point of collection.",
+    "remediation": "Separate optional processing (analytics, marketing) from the consent required to deliver the service.",
+    "suggestedLanguage": "\"We collect only the personal data that is necessary for the purpose you consented to. Fields that are optional are marked as such, and declining them will not prevent you from using the core service.\""
+  },
+  {
+    "ruleId": "C4",
+    "category": "consent",
+    "categoryLabel": "Consent Validity",
+    "title": "Consent can be withdrawn as easily as it was given",
+    "description": "The Data Principal has the right to withdraw consent at any time, and the ease of withdrawal must be comparable to the ease with which consent was given.",
+    "requirement": "The policy must describe an accessible withdrawal mechanism and confirm comparable ease.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 6(4)-(6)",
+    "ruleReference": "Rule 3(c)(i)",
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 3(c)(i) of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "MANDATORY",
+    "weight": 3,
+    "severity": "CRITICAL",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\bwithdraw(al|ing)?\\s+(your\\s+|the\\s+|of\\s+)?consent\\b",
+        "\\b(revoke|rescind|cancel)\\s+(your\\s+)?consent\\b",
+        "\\bconsent\\b[^.]{0,60}\\b(withdraw|revoke)\\b",
+        "\\bopt[- ]?out\\b[^.]{0,60}\\b(any\\s+time|anytime|processing)\\b"
+      ],
+      "supporting": [
+        "\\bwithdraw\\b",
+        "\\bopt[- ]?out\\b",
+        "\\bunsubscribe\\b",
+        "\\brevoke\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Withdrawal available at any time",
+          "pattern": "\\b(at\\s+any\\s+time|anytime)\\b"
+        },
+        {
+          "label": "Explains how to withdraw",
+          "pattern": "\\b(withdraw|opt[- ]?out|revoke)\\b[^.]{0,120}\\b(by|through|via|contact|email|settings|account|writing|link)\\b"
+        },
+        {
+          "label": "States the consequences of withdrawal",
+          "pattern": "\\b(withdraw|withdrawal)\\b[^.]{0,140}\\b(cease|stop|discontinue|consequence|affect|no longer|delete)\\b"
+        },
+        {
+          "label": "Withdrawal as easy as giving consent",
+          "pattern": "\\b(as\\s+easy\\s+as|same\\s+ease|equally\\s+easy)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "withdraw consent",
+        "revoke permission for processing",
+        "opt out at any time"
+      ],
+      "portedFrom": "consent_withdrawal"
+    },
+    "recommendation": "Give an explicit, always-available withdrawal route — a link, a settings toggle or a named email — and state plainly what happens to processing and to the data once consent is withdrawn.",
+    "remediation": "Provide a self-service withdrawal control in account settings and state that withdrawal is as easy as giving consent.",
+    "suggestedLanguage": "\"You may withdraw your consent at any time, with the same ease with which you gave it, from Account Settings → Privacy or by writing to privacy@[company].in. On withdrawal we will cease processing within [X] days and will erase the personal data unless retention is required by law. Withdrawal does not affect the lawfulness of processing carried out before it.\""
+  },
+  {
+    "ruleId": "C5",
+    "category": "consent",
+    "categoryLabel": "Consent Validity",
+    "title": "Consent Manager role and registration is disclosed where one is used",
+    "description": "Where consent is given through a Consent Manager, its role and registration with the Board must be disclosed.",
+    "requirement": "If a Consent Manager is used, the policy must identify it and its registered status.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 6(7)-(9)",
+    "ruleReference": "Rule 4",
+    "scheduleReference": "First Schedule, Parts A and B",
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2026-11-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 4 of the DPDP Rules 2025 comes into force one year after publication of G.S.R. 846(E), i.e. 2026-11-13 (Rule 1(2)-(4)).",
+    "weightClass": "RECOMMENDED",
+    "weight": 1,
+    "severity": "LOW",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\bconsent\\s+manager\\b",
+        "\\b(record|log|maintain|evidence|proof)\\s+of\\s+consent\\b",
+        "\\bconsent\\s+(records?|logs?|history|receipts?|dashboard|preferences?\\s+centre|preference\\s+center)\\b"
+      ],
+      "supporting": [
+        "\\bconsent\\s+management\\b",
+        "\\bpreference\\s+cent(re|er)\\b",
+        "\\baudit\\s+trail\\b"
+      ],
+      "specifics": [
+        {
+          "label": "References a Consent Manager",
+          "pattern": "\\bconsent\\s+manager\\b"
+        },
+        {
+          "label": "Maintains consent records",
+          "pattern": "\\b(record|log|maintain|retain)\\b[^.]{0,50}\\bconsent\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "consent manager registered with the Board"
+      ],
+      "portedFrom": "consent_manager"
+    },
+    "recommendation": "Describe how consent is recorded and how a Data Principal can review or manage it — through an in-product preference centre and, where used, a DPDPA-registered Consent Manager.",
+    "remediation": "Name the Consent Manager and link its Board registration entry, or state that none is used.",
+    "suggestedLanguage": "\"We maintain an auditable record of every consent you give, including the notice version shown to you, the purpose, and the timestamp. You may review and change these at any time in your Privacy Dashboard, or through a Consent Manager registered with the Data Protection Board of India.\""
+  },
+  {
+    "ruleId": "K1",
+    "category": "children",
+    "categoryLabel": "Children's Data Protection",
+    "title": "States clearly whether the service processes children's personal data",
+    "description": "A Data Fiduciary must be clear about whether it processes the personal data of children (under 18).",
+    "requirement": "The policy must state its position on processing data of persons under 18.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 9",
+    "ruleReference": "Rule 10",
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 10 of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "CONDITIONAL",
+    "weight": 2,
+    "severity": "HIGH",
+    "applicability": "CONDITIONAL",
+    "detection": {
+      "anchors": [
+        "\\b(our\\s+)?(services?|platform|site|app)\\b[^.]{0,70}\\b(not\\s+(intended|directed|aimed)|intended)\\b[^.]{0,40}\\b(child|children|minors?|under\\s+(the\\s+age\\s+of\\s+)?(18|eighteen))\\b",
+        "\\bwe\\s+do\\s+not\\s+knowingly\\s+(collect|process|solicit)\\b[^.]{0,60}\\b(child|children|minors?)\\b",
+        "\\b(child|children|minors?)\\b[^.]{0,60}\\b(under\\s+(the\\s+age\\s+of\\s+)?(18|eighteen)|below\\s+18)\\b"
+      ],
+      "supporting": [
+        "\\bchild(ren)?\\b",
+        "\\bminors?\\b",
+        "\\bunder\\s+18\\b",
+        "\\bage\\b"
+      ],
+      "specifics": [
+        {
+          "label": "States a clear position on children",
+          "pattern": "\\b(do\\s+not\\s+knowingly|not\\s+(intended|directed)|we\\s+(do\\s+)?(not\\s+)?(collect|process))\\b"
+        },
+        {
+          "label": "Defines a child as under 18",
+          "pattern": "\\b(18|eighteen)\\b"
+        }
+      ],
+      "applicabilityTriggers": [
+        "\\b(child(ren)?|minor|under\\s+(the\\s+age\\s+of\\s+)?(13|16|18|eighteen)|parent(al)?|guardian|school|student|kids?|teen)\\b"
+      ],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "we do not knowingly collect children's personal data"
+      ],
+      "portedFrom": null
+    },
+    "recommendation": "State explicitly whether the service is directed at, or knowingly used by, persons under 18, and define a child as an individual under the age of eighteen.",
+    "remediation": "Add a dedicated Children's Data section stating the position and the age threshold.",
+    "suggestedLanguage": "\"Our services are not directed at individuals under the age of eighteen. We do not knowingly collect the personal data of a child without the verifiable consent of a parent or lawful guardian.\""
+  },
+  {
+    "ruleId": "K2",
+    "category": "children",
+    "categoryLabel": "Children's Data Protection",
+    "title": "Describes a verifiable parental consent mechanism",
+    "description": "Before processing any personal data of a child or a person with disability who has a lawful guardian, the Data Fiduciary must obtain verifiable consent of the parent or lawful guardian.",
+    "requirement": "The policy must describe how parental identity and adulthood are verified.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 9(1)",
+    "ruleReference": "Rule 10",
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 10 of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "CONDITIONAL",
+    "weight": 2,
+    "severity": "CRITICAL",
+    "applicability": "CONDITIONAL",
+    "detection": {
+      "anchors": [
+        "\\b(child(ren)?|minor)s?\\b[^.]{0,100}\\b(parent(al)?|guardian)\\b[^.]{0,60}\\bconsent\\b",
+        "\\bverifiable\\s+(parental\\s+|guardian\\s+)?consent\\b",
+        "\\b(under|below)\\s+(the\\s+age\\s+of\\s+)?(18|eighteen)\\b",
+        "\\bchild(ren)?'?s?\\s+(personal\\s+)?(data|information|privacy)\\b"
+      ],
+      "supporting": [
+        "\\bchild(ren)?\\b",
+        "\\bminor\\b",
+        "\\bparent(al)?\\b",
+        "\\bguardian\\b",
+        "\\bage\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Uses the under-18 threshold",
+          "pattern": "\\b(18|eighteen)\\b"
+        },
+        {
+          "label": "Requires verifiable consent",
+          "pattern": "\\bverifiab\\w+\\b"
+        },
+        {
+          "label": "Covers persons with disability / guardian",
+          "pattern": "\\b(disabilit(y|ies)|lawful\\s+guardian|person\\s+with\\s+disability)\\b"
+        },
+        {
+          "label": "Describes the verification method",
+          "pattern": "\\b(verif\\w+)\\b[^.]{0,100}\\b(id|identity|document|digilocker|token|virtual|otp|credential)\\b"
+        }
+      ],
+      "applicabilityTriggers": [
+        "\\b(child(ren)?|minor|under\\s+(the\\s+age\\s+of\\s+)?(13|16|18|eighteen)|parent(al)?|guardian|school|student|kids?|teen)\\b"
+      ],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "verifiable parental consent before processing a child's data"
+      ],
+      "portedFrom": "children_consent"
+    },
+    "recommendation": "Add a children's clause using India's under-18 threshold, describe how parental consent is verified, and extend the same protection to persons with disabilities who have a lawful guardian.",
+    "remediation": "Implement and describe a verification step using reliable identity/age details or a virtual token issued by an authorised entity (Rule 10(1)).",
+    "suggestedLanguage": "\"We do not knowingly process the personal data of any person under 18 years of age without first obtaining verifiable consent from their parent or lawful guardian, as required under Section 9(1) of the DPDPA, 2023. Verification is carried out through [describe method, e.g. a government-issued virtual token or DigiLocker-based identity check]. The same protection applies to a person with a disability who has a lawful guardian.\""
+  },
+  {
+    "ruleId": "K3",
+    "category": "children",
+    "categoryLabel": "Children's Data Protection",
+    "title": "States that children are not tracked or targeted with advertising",
+    "description": "A Data Fiduciary must not undertake tracking or behavioural monitoring of children or targeted advertising directed at children.",
+    "requirement": "The policy must contain an explicit prohibition on tracking and targeted advertising to children.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 9(3)",
+    "ruleReference": "Rule 12",
+    "scheduleReference": "Fourth Schedule, Parts A and B",
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 12 of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "CONDITIONAL",
+    "weight": 2,
+    "severity": "CRITICAL",
+    "applicability": "CONDITIONAL",
+    "detection": {
+      "anchors": [
+        "\\b(not|never|prohibit\\w*|refrain)\\b[^.]{0,90}\\b(track|monitor|profil|target\\w*\\s+advertis|behavioural)\\w*\\b[^.]{0,60}\\bchild",
+        "\\bchild(ren)?\\b[^.]{0,90}\\b(not\\s+)?(tracked?|monitor\\w*|targeted\\s+advertis\\w*|behavioural\\s+monitoring)\\b",
+        "\\bdetrimental\\s+effect\\b[^.]{0,60}\\b(child|well[- ]being)\\b"
+      ],
+      "supporting": [
+        "\\btracking\\b",
+        "\\btargeted\\s+advertis\\w+\\b",
+        "\\bbehavioural\\s+monitoring\\b",
+        "\\bprofil(e|ing)\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Prohibits tracking of children",
+          "pattern": "\\btrack\\w*\\b"
+        },
+        {
+          "label": "Prohibits targeted advertising",
+          "pattern": "\\btargeted\\s+advertis\\w+\\b"
+        },
+        {
+          "label": "References detrimental effect",
+          "pattern": "\\b(detrimental|harm\\w*|well[- ]being)\\b"
+        }
+      ],
+      "applicabilityTriggers": [
+        "\\b(child(ren)?|minor|under\\s+(the\\s+age\\s+of\\s+)?(13|16|18|eighteen)|parent(al)?|guardian|school|student|kids?|teen)\\b"
+      ],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "no behavioural tracking or targeted advertising to children"
+      ],
+      "portedFrom": "children_tracking"
+    },
+    "recommendation": "State plainly that children are never tracked, behaviourally monitored, or shown targeted advertising, and that no processing likely to harm a child's well-being is undertaken.",
+    "remediation": "Add an unqualified statement that no behavioural tracking or targeted advertising is directed at children.",
+    "suggestedLanguage": "\"We do not undertake any processing of personal data that is likely to cause a detrimental effect on the well-being of a child. We do not track or behaviourally monitor children, and we never direct targeted advertising at them, as prohibited by Sections 9(2) and 9(3) of the DPDPA, 2023.\""
+  },
+  {
+    "ruleId": "G1",
+    "category": "grounds",
+    "categoryLabel": "Grounds for Processing / Legitimate Use",
+    "title": "States the legal basis for processing",
+    "description": "Personal data may be processed only for a lawful purpose for which the Data Principal has given consent, or for certain legitimate uses.",
+    "requirement": "The policy must state whether it relies on consent or on a legitimate use under section 7.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Sections 4, 7",
+    "ruleReference": null,
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification.",
+    "weightClass": "RECOMMENDED",
+    "weight": 1,
+    "severity": "MEDIUM",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\bfor\\s+the\\s+(specific\\s+|following\\s+|stated\\s+)?purposes?\\s+(of|described|set out|listed)",
+        "\\bpurpose\\s+limitation\\b",
+        "\\b(only|solely|exclusively)\\s+(use|process|used|processed)\\b[^.]{0,80}\\bpurpose",
+        "\\b(we\\s+)?(will|shall|do)\\s+not\\s+(use|process)\\b[^.]{0,80}\\b(other|unrelated|different)\\s+purpose"
+      ],
+      "supporting": [
+        "\\bpurpose\\b",
+        "\\bin\\s+order\\s+to\\b",
+        "\\blawful\\s+purpose\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Purposes are enumerated",
+          "pattern": "\\b(purposes?)\\b[^.]{0,60}\\b(following|below|listed|include|such as|:)\\b"
+        },
+        {
+          "label": "Commits to no incompatible reuse",
+          "pattern": "\\bnot\\s+(use|process|share)\\b[^.]{0,80}\\b(other|unrelated|incompatible|new)\\s+purpose"
+        },
+        {
+          "label": "Fresh consent for new purposes",
+          "pattern": "\\b(new|additional|further|separate)\\s+(consent|purpose)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "legal basis for processing your personal data"
+      ],
+      "portedFrom": "purpose_limitation"
+    },
+    "recommendation": "Replace catch-all phrases such as \"for business purposes\" with an enumerated list mapping each data category to a specific purpose, and commit to obtaining fresh consent before any new purpose.",
+    "remediation": "Add a \"Legal basis\" column to the purpose table naming consent or the specific legitimate use relied on.",
+    "suggestedLanguage": "\"We process your personal data only for the specific purposes listed in the table above. We will not use it for any other purpose without first giving you a fresh notice and obtaining your consent for that purpose.\""
+  },
+  {
+    "ruleId": "G2",
+    "category": "grounds",
+    "categoryLabel": "Grounds for Processing / Legitimate Use",
+    "title": "Names the specific legitimate use relied upon",
+    "description": "Where processing relies on a legitimate use rather than consent, the applicable category under section 7 should be identified.",
+    "requirement": "The policy should name which section 7 legitimate use applies.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 7",
+    "ruleReference": null,
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification.",
+    "weightClass": "RECOMMENDED",
+    "weight": 1,
+    "severity": "LOW",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\blegitimate\\s+uses?\\b",
+        "\\b(voluntarily\\s+provided|medical\\s+emergency|employment\\s+purposes?|public\\s+health|disaster|epidemic|court\\s+order|legal\\s+obligation)\\b[^.]{0,60}\\b(process|basis|ground)\\w*",
+        "\\b(section|sec\\.?)\\s*7\\b"
+      ],
+      "supporting": [
+        "\\blegitimate\\b",
+        "\\bexempt\\w*",
+        "\\bwithout\\s+consent\\b",
+        "\\bstatutory\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Names a section 7 category",
+          "pattern": "\\b(voluntarily\\s+provided|medical\\s+emergency|employment|public\\s+health|epidemic|disaster|state\\s+function|legal\\s+obligation|court)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "we process data without consent under a legitimate use"
+      ],
+      "portedFrom": null
+    },
+    "recommendation": "Where you process personal data without consent, name the specific legitimate use under section 7 that you rely on.",
+    "remediation": "List each non-consent processing activity against its section 7 clause.",
+    "suggestedLanguage": "\"Where we process your personal data without consent, we rely on the legitimate uses set out in Section 7 of the DPDPA, 2023 — specifically [employment purposes / responding to a medical emergency / compliance with a legal obligation].\""
+  },
+  {
+    "ruleId": "Q1",
+    "category": "accuracy",
+    "categoryLabel": "Data Accuracy & Quality",
+    "title": "Commits to completeness, accuracy and consistency of personal data",
+    "description": "Where personal data is likely to be used to make a decision affecting the Data Principal, or disclosed to another Data Fiduciary, the Data Fiduciary must ensure its completeness, accuracy and consistency.",
+    "requirement": "The policy must commit to data accuracy, particularly where data drives decisions.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 8(3)",
+    "ruleReference": null,
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification.",
+    "weightClass": "RECOMMENDED",
+    "weight": 1,
+    "severity": "MEDIUM",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\b(accura(te|cy)|complete(ness)?|up[- ]to[- ]date|current)\\b[^.]{0,80}\\b(personal\\s+)?(data|information)\\b",
+        "\\b(ensure|maintain|keep)\\b[^.]{0,60}\\b(accura(te|cy)|up[- ]to[- ]date|correct)\\b",
+        "\\b(data\\s+)?quality\\b[^.]{0,50}\\b(personal\\s+data|information)\\b"
+      ],
+      "supporting": [
+        "\\baccura(te|cy)\\b",
+        "\\bup[- ]to[- ]date\\b",
+        "\\bcomplete\\b",
+        "\\bcorrect\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Commits to accuracy for decisions",
+          "pattern": "\\b(decision|affect\\w*)\\b[^.]{0,80}\\b(accura|complete|consistent)"
+        },
+        {
+          "label": "Asks the user to keep data current",
+          "pattern": "\\b(you|please)\\b[^.]{0,80}\\b(update|inform us|keep.{0,20}current|notify us)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "we keep your data accurate and up to date"
+      ],
+      "portedFrom": "data_accuracy"
+    },
+    "recommendation": "Commit to keeping personal data accurate and consistent wherever it drives a decision about the individual or is shared onward, and tell users how to update their own records.",
+    "remediation": "Add an accuracy commitment scoped to decision-making and onward disclosure, plus a self-service update path.",
+    "suggestedLanguage": "\"Where your personal data is used to make a decision that affects you, or is disclosed to another Data Fiduciary, we take reasonable steps to ensure it is complete, accurate and consistent. You can review and update your details at any time from your account profile.\""
+  },
+  {
+    "ruleId": "S1",
+    "category": "security",
+    "categoryLabel": "Security Safeguards",
+    "title": "States that reasonable technical security measures are used",
+    "description": "A Data Fiduciary must protect personal data by taking reasonable security safeguards, which must include at minimum encryption/obfuscation/masking or virtual tokens, access control, logging and monitoring, and backups.",
+    "requirement": "The policy must name concrete technical controls, not generic assurances.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 8(5)",
+    "ruleReference": "Rule 6(1)(a)-(e)",
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 6(1)(a)-(e) of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "MANDATORY",
+    "weight": 3,
+    "severity": "CRITICAL",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\b(reasonable|appropriate|technical and organi[sz]ational)\\s+(security\\s+)?(safeguards?|measures?|controls?)\\b",
+        "\\b(we|company)\\s+(implement|maintain|employ|deploy|use|adopt)s?\\b[^.]{0,70}\\b(security|encryption|safeguards?|measures?)\\b",
+        "\\b(encrypt(ion|ed)?|ssl|tls|https|firewall|access controls?|multi[- ]factor)\\b",
+        "\\bprotect\\b[^.]{0,60}\\b(unauthori[sz]ed|accidental)\\s+(access|disclosure|loss|use)\\b"
+      ],
+      "supporting": [
+        "\\bsecurity\\b",
+        "\\bsafeguard\\b",
+        "\\bencrypt\\w*\\b",
+        "\\bconfidential\\w*\\b",
+        "\\bprotect\\w*\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Encryption named",
+          "pattern": "\\b(encrypt\\w*|ssl|tls|https|at rest|in transit)\\b"
+        },
+        {
+          "label": "Access control named",
+          "pattern": "\\b(access\\s+control|role[- ]based|least\\s+privilege|authenticat\\w+|multi[- ]factor|2fa)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "we encrypt your data and control access to it"
+      ],
+      "portedFrom": "security_safeguards"
+    },
+    "recommendation": "Replace generic assurances such as \"we take security seriously\" with the actual controls: encryption in transit and at rest, role-based access control, logging and monitoring, periodic testing, and staff training.",
+    "remediation": "Name the specific controls required by Rule 6(1): encryption/masking/tokenisation, access control, access logs retained one year, and backups.",
+    "suggestedLanguage": "\"We implement reasonable security safeguards under Section 8(5) of the DPDPA, 2023, including TLS 1.3 encryption in transit and AES-256 encryption at rest, role-based access control on the principle of least privilege, multi-factor authentication for administrative access, centralised logging and monitoring, annual VAPT by an independent assessor, and mandatory privacy training for all personnel with access to personal data.\""
+  },
+  {
+    "ruleId": "S2",
+    "category": "security",
+    "categoryLabel": "Security Safeguards",
+    "title": "Describes organisational measures in addition to technical ones",
+    "description": "A Data Fiduciary must implement appropriate technical AND organisational measures to ensure effective observance of the Act.",
+    "requirement": "The policy must describe organisational controls such as training, audits, incident response or contractual safeguards on processors.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 8(4)",
+    "ruleReference": "Rule 6(1)(f)-(g)",
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 6(1)(f)-(g) of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "MANDATORY",
+    "weight": 3,
+    "severity": "HIGH",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\b(reasonable|appropriate|technical and organi[sz]ational)\\s+(security\\s+)?(safeguards?|measures?|controls?)\\b",
+        "\\b(we|company)\\s+(implement|maintain|employ|deploy|use|adopt)s?\\b[^.]{0,70}\\b(security|encryption|safeguards?|measures?)\\b",
+        "\\b(encrypt(ion|ed)?|ssl|tls|https|firewall|access controls?|multi[- ]factor)\\b",
+        "\\bprotect\\b[^.]{0,60}\\b(unauthori[sz]ed|accidental)\\s+(access|disclosure|loss|use)\\b"
+      ],
+      "supporting": [
+        "\\bsecurity\\b",
+        "\\bsafeguard\\b",
+        "\\bencrypt\\w*\\b",
+        "\\bconfidential\\w*\\b",
+        "\\bprotect\\w*\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Organisational measures named",
+          "pattern": "\\b(training|audit|penetration\\s+test|vulnerability|monitoring|incident\\s+response|iso\\s*27001|soc\\s*2|policy review)\\b"
+        },
+        {
+          "label": "Processor safeguards imposed",
+          "pattern": "\\b(processor|vendor|third[- ]part)\\w*\\b[^.]{0,80}\\b(security|safeguard|encrypt)"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "staff training and security audits"
+      ],
+      "portedFrom": "security_safeguards"
+    },
+    "recommendation": "Describe the organisational half of the duty: staff training, access reviews, audits, incident response, and the security terms imposed on Data Processors by contract.",
+    "remediation": "Add an organisational-measures paragraph covering training, review cadence and processor contract terms.",
+    "suggestedLanguage": "\"Alongside technical controls we maintain organisational measures: mandatory annual privacy and security training, quarterly access reviews, a documented incident response plan, and contractual security obligations on every Data Processor we engage, as required by Rule 6(1)(f)-(g) of the DPDP Rules, 2025.\""
+  },
+  {
+    "ruleId": "B1",
+    "category": "breach",
+    "categoryLabel": "Breach Notification",
+    "title": "Describes the process for notifying the Board and affected Data Principals",
+    "description": "In the event of a personal data breach the Data Fiduciary must intimate both the Data Protection Board and each affected Data Principal.",
+    "requirement": "The policy must commit to notifying both the Board and affected individuals.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 8(6)",
+    "ruleReference": "Rule 7(1)-(2)",
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 7(1)-(2) of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "MANDATORY",
+    "weight": 3,
+    "severity": "CRITICAL",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\b(data\\s+)?breach\\b[^.]{0,90}\\b(notif(y|ied|ication)|inform|report|intimate)\\b",
+        "\\b(notif(y|ied|ication)|inform|report)\\b[^.]{0,90}\\b(data\\s+)?breach\\b",
+        "\\b(security|data)\\s+(incident|breach)\\b[^.]{0,80}\\b(board|authorit|affected|users?|you)\\b",
+        "\\bdata\\s+protection\\s+board\\b"
+      ],
+      "supporting": [
+        "\\bbreach\\b",
+        "\\bincident\\b",
+        "\\bunauthori[sz]ed\\s+(access|disclosure)\\b",
+        "\\bcompromis\\w+\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Notifies the Data Protection Board",
+          "pattern": "\\b(data\\s+protection\\s+board|the\\s+board|regulator|authorit(y|ies))\\b"
+        },
+        {
+          "label": "Notifies affected Data Principals",
+          "pattern": "\\b(notif(y|ied)|inform|intimate|alert)\\b[^.]{0,70}\\b(you|affected|users?|data principals?|individuals?)\\b"
+        },
+        {
+          "label": "Describes remedial steps",
+          "pattern": "\\b(remedial|mitigat\\w+|contain\\w+|investigat\\w+|steps\\s+(taken|we))\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "we will notify you and the Board of a data breach"
+      ],
+      "portedFrom": "breach_notification"
+    },
+    "recommendation": "Add an explicit breach clause covering both notification routes — the Data Protection Board and every affected Data Principal — with a stated timeline and a summary of the incident response process.",
+    "remediation": "Add both notification routes and the content required by Rule 7(1)(a)-(e): nature and extent, consequences, mitigation, user safety measures, and a contact point.",
+    "suggestedLanguage": "\"In the event of a personal data breach, we will notify the Data Protection Board of India and every affected Data Principal without undue delay and in any case within 72 hours of becoming aware of it, in the form and manner prescribed under Section 8(6) of the DPDPA, 2023. The notification will describe the nature and extent of the breach, its likely consequences, the remedial measures we have taken, and the contact point for further information.\""
+  },
+  {
+    "ruleId": "B2",
+    "category": "breach",
+    "categoryLabel": "Breach Notification",
+    "title": "States a breach notification timeline",
+    "description": "Intimation to affected Data Principals must be without delay; detailed intimation to the Board must be within seventy-two hours of becoming aware of the breach.",
+    "requirement": "The policy must state a concrete notification timeline.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 8(6)",
+    "ruleReference": "Rule 7(2)(b)",
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 7(2)(b) of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "MANDATORY",
+    "weight": 3,
+    "severity": "HIGH",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\b(data\\s+)?breach\\b[^.]{0,90}\\b(notif(y|ied|ication)|inform|report|intimate)\\b",
+        "\\b(notif(y|ied|ication)|inform|report)\\b[^.]{0,90}\\b(data\\s+)?breach\\b",
+        "\\b(security|data)\\s+(incident|breach)\\b[^.]{0,80}\\b(board|authorit|affected|users?|you)\\b",
+        "\\bdata\\s+protection\\s+board\\b"
+      ],
+      "supporting": [
+        "\\bbreach\\b",
+        "\\bincident\\b",
+        "\\bunauthori[sz]ed\\s+(access|disclosure)\\b",
+        "\\bcompromis\\w+\\b"
+      ],
+      "specifics": [
+        {
+          "label": "States a notification timeline",
+          "pattern": "\\b(without\\s+undue\\s+delay|\\d+\\s*(hours?|days?)|promptly|immediately)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "we will notify within 72 hours of becoming aware"
+      ],
+      "portedFrom": "breach_notification"
+    },
+    "recommendation": "State the timeline explicitly: without delay to affected users, and within 72 hours to the Data Protection Board as required by Rule 7(2)(b).",
+    "remediation": "Add the 72-hour Board commitment and a \"without delay\" commitment to users.",
+    "suggestedLanguage": "\"We will intimate each affected Data Principal without delay, and will provide the Data Protection Board with detailed information within seventy-two hours of becoming aware of the breach, in accordance with Rule 7(2)(b) of the DPDP Rules, 2025.\""
+  },
+  {
+    "ruleId": "R1",
+    "category": "retention",
+    "categoryLabel": "Data Retention & Erasure",
+    "title": "States how long personal data is retained",
+    "description": "A Data Fiduciary must be able to state the retention period applicable to the personal data it holds.",
+    "requirement": "The policy must state a concrete retention period or a defined criterion.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 8(7)-(8)",
+    "ruleReference": "Rule 8",
+    "scheduleReference": "Third Schedule",
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 8 of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "MANDATORY",
+    "weight": 3,
+    "severity": "HIGH",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\b(retain|retention|store|keep)\\b[^.]{0,100}\\b(for\\s+(a\\s+)?(period|duration|as long as)|until|no longer than)\\b",
+        "\\bretention\\s+(period|policy|schedule|duration)\\b",
+        "\\b(delete|eras|destroy|purge)\\w*\\b[^.]{0,90}\\b(no longer (necessary|required|needed)|purpose (is|has been) (served|fulfilled)|withdraw)",
+        "\\bwe\\s+(will|shall)\\s+(delete|erase|destroy)\\b"
+      ],
+      "supporting": [
+        "\\bretain(ed|ing)?\\b",
+        "\\bretention\\b",
+        "\\bdelet(e|ion)\\b",
+        "\\beras(e|ure)\\b"
+      ],
+      "specifics": [
+        {
+          "label": "States a definite retention period",
+          "pattern": "\\b(\\d+\\s*(days?|months?|years?)|as (long|soon) as|until (you|the purpose)|thereafter)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "how long we keep your personal data"
+      ],
+      "portedFrom": "retention"
+    },
+    "recommendation": "Publish a retention schedule with a definite period per data category, and commit to erasure — including by processors and from backups — once consent is withdrawn or the purpose is served.",
+    "remediation": "Publish a retention schedule with a period per data category. Note the Rule 8(3) minimum one-year retention of processing logs.",
+    "suggestedLanguage": "\"We retain each category of personal data only for as long as the purpose it was collected for is being served: account data for the life of your account plus 90 days; transaction records for 8 years as required under applicable tax law. When you withdraw consent or close your account, we and our Data Processors erase the data within 30 days, including from backups on their next scheduled rotation.\""
+  },
+  {
+    "ruleId": "R2",
+    "category": "retention",
+    "categoryLabel": "Data Retention & Erasure",
+    "title": "Describes erasure on consent withdrawal or once the purpose is served",
+    "description": "Unless retention is necessary for legal compliance, the Data Fiduciary must erase personal data upon withdrawal of consent or as soon as it is reasonable to assume the specified purpose is no longer being served, whichever is earlier, and cause its Data Processor to do the same.",
+    "requirement": "The policy must describe erasure triggered by withdrawal and by purpose completion, including processor-held copies.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 8(7)(a)-(b)",
+    "ruleReference": "Rule 8(1)-(2)",
+    "scheduleReference": "Third Schedule",
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 8(1)-(2) of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "MANDATORY",
+    "weight": 3,
+    "severity": "HIGH",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\b(retain|retention|store|keep)\\b[^.]{0,100}\\b(for\\s+(a\\s+)?(period|duration|as long as)|until|no longer than)\\b",
+        "\\bretention\\s+(period|policy|schedule|duration)\\b",
+        "\\b(delete|eras|destroy|purge)\\w*\\b[^.]{0,90}\\b(no longer (necessary|required|needed)|purpose (is|has been) (served|fulfilled)|withdraw)",
+        "\\bwe\\s+(will|shall)\\s+(delete|erase|destroy)\\b"
+      ],
+      "supporting": [
+        "\\bretain(ed|ing)?\\b",
+        "\\bretention\\b",
+        "\\bdelet(e|ion)\\b",
+        "\\beras(e|ure)\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Erasure on withdrawal / purpose completion",
+          "pattern": "\\b(delete|eras|destroy|purge)\\w*\\b[^.]{0,100}\\b(withdraw|no longer|purpose|account closure|terminat)"
+        },
+        {
+          "label": "Names the legal retention exception",
+          "pattern": "\\b(required|obliged|permitted)\\s+(by|under)\\s+(law|applicable law|statute)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "we delete your data when you withdraw consent"
+      ],
+      "portedFrom": "retention"
+    },
+    "recommendation": "Commit to erasing personal data on withdrawal of consent or completion of the purpose, and to instructing Data Processors to erase their copies.",
+    "remediation": "Add the dual erasure trigger and the processor cascade. Note the Rule 8(2) duty to warn the user at least 48 hours before erasure.",
+    "suggestedLanguage": "\"When you withdraw your consent, or once the purpose for which your personal data was collected is no longer being served, we erase that personal data and instruct every Data Processor acting on our behalf to erase their copies, unless retention is required by law.\""
+  },
+  {
+    "ruleId": "R3",
+    "category": "retention",
+    "categoryLabel": "Data Retention & Erasure",
+    "title": "Clarifies legal retention exceptions",
+    "description": "Erasure duties do not apply where retention is necessary for compliance with any law for the time being in force.",
+    "requirement": "The policy should identify the laws that require longer retention.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 8(7)",
+    "ruleReference": "Rule 8(3)",
+    "scheduleReference": "Seventh Schedule",
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 8(3) of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "MANDATORY",
+    "weight": 3,
+    "severity": "MEDIUM",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\b(retain|retention|store|keep)\\b[^.]{0,100}\\b(for\\s+(a\\s+)?(period|duration|as long as)|until|no longer than)\\b",
+        "\\bretention\\s+(period|policy|schedule|duration)\\b",
+        "\\b(delete|eras|destroy|purge)\\w*\\b[^.]{0,90}\\b(no longer (necessary|required|needed)|purpose (is|has been) (served|fulfilled)|withdraw)",
+        "\\bwe\\s+(will|shall)\\s+(delete|erase|destroy)\\b"
+      ],
+      "supporting": [
+        "\\bretain(ed|ing)?\\b",
+        "\\bretention\\b",
+        "\\bdelet(e|ion)\\b",
+        "\\beras(e|ure)\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Covers processors / backups",
+          "pattern": "\\b(backup|archive|processor|third[- ]party)\\b[^.]{0,80}\\b(delete|eras|retain)"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "we retain data longer where the law requires"
+      ],
+      "portedFrom": "retention"
+    },
+    "recommendation": "Name the statutes that compel longer retention rather than relying on a generic \"as required by law\" catch-all.",
+    "remediation": "List the specific retention laws (e.g. tax, KYC, IT Act log retention) and the period each imposes.",
+    "suggestedLanguage": "\"Where any law for the time being in force requires us to retain personal data for longer — for example [the Income-tax Act, 1961 / RBI KYC directions] — we retain it for the period that law prescribes and erase it thereafter.\""
+  },
+  {
+    "ruleId": "GR1",
+    "category": "grievance",
+    "categoryLabel": "Grievance Redressal Mechanism",
+    "title": "Provides a clear internal grievance channel",
+    "description": "A Data Fiduciary must establish an effective mechanism to redress the grievances of Data Principals, and the Data Principal has a right to readily available means of grievance redressal.",
+    "requirement": "The policy must name a reachable internal complaint channel — email, form or helpline.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Sections 8(10), 13(1)",
+    "ruleReference": "Rule 14(3)",
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 14(3) of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "MANDATORY",
+    "weight": 3,
+    "severity": "CRITICAL",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\bgrievance\\b[^.]{0,80}\\b(redressal|officer|mechanism|procedure|process|contact|raise|lodge|submit)\\b",
+        "\\b(grievance|complaint)s?\\s+(officer|redressal|cell|team|channel)\\b",
+        "\\b(lodge|raise|submit|file|register)\\b[^.]{0,50}\\b(a\\s+)?(grievance|complaint)\\b"
+      ],
+      "supporting": [
+        "\\bgrievance\\b",
+        "\\bcomplaint\\b",
+        "\\bredressal\\b",
+        "\\bombuds\\w*\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Names a Grievance Officer / DPO",
+          "pattern": "\\b(grievance\\s+officer|data\\s+protection\\s+officer|dpo|nodal\\s+officer|privacy\\s+officer)\\b"
+        },
+        {
+          "label": "Gives contact details",
+          "pattern": "\\b([\\w.+-]+@[\\w-]+\\.[\\w.]+|\\+?\\d[\\d\\s-]{7,}|postal\\s+address)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "how to raise a grievance or complaint with us"
+      ],
+      "portedFrom": "grievance_redressal"
+    },
+    "recommendation": "Publish a named Grievance Officer with a direct email address and a committed response window, so the Section 13 route is genuinely \"readily available\".",
+    "remediation": "Publish a named Grievance Officer with a working email address and postal address.",
+    "suggestedLanguage": "\"If you have any grievance about how we process your personal data, you may contact our Grievance Officer: [Name], [Designation], [Company], [Postal Address], grievance@[company].in, +91-XXXXXXXXXX. We acknowledge every grievance within 48 hours and resolve it within 30 days, as required under Section 13 of the DPDPA, 2023.\""
+  },
+  {
+    "ruleId": "GR2",
+    "category": "grievance",
+    "categoryLabel": "Grievance Redressal Mechanism",
+    "title": "States a grievance response timeline",
+    "description": "The Data Fiduciary must respond to grievances within the prescribed period. Rule 14(3) sets a period not exceeding ninety days.",
+    "requirement": "The policy must state a concrete response time for grievances.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 13(2)",
+    "ruleReference": "Rule 14(3)",
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 14(3) of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "MANDATORY",
+    "weight": 3,
+    "severity": "MEDIUM",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\bgrievance\\b[^.]{0,80}\\b(redressal|officer|mechanism|procedure|process|contact|raise|lodge|submit)\\b",
+        "\\b(grievance|complaint)s?\\s+(officer|redressal|cell|team|channel)\\b",
+        "\\b(lodge|raise|submit|file|register)\\b[^.]{0,50}\\b(a\\s+)?(grievance|complaint)\\b"
+      ],
+      "supporting": [
+        "\\bgrievance\\b",
+        "\\bcomplaint\\b",
+        "\\bredressal\\b",
+        "\\bombuds\\w*\\b"
+      ],
+      "specifics": [
+        {
+          "label": "States a response timeline",
+          "pattern": "\\b(within\\s+)?\\d+\\s*(business\\s+|working\\s+)?(days?|hours?|weeks?)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "we will respond to your complaint within N days"
+      ],
+      "portedFrom": "grievance_redressal"
+    },
+    "recommendation": "Publish the period within which grievances are answered. Rule 14(3) caps this at ninety days, so a shorter published commitment is both compliant and better practice.",
+    "remediation": "Add an explicit response-time commitment to the grievance section.",
+    "suggestedLanguage": "\"We acknowledge every grievance within [3] working days and resolve it within [30] days, and in no case later than the ninety-day period prescribed under Rule 14(3) of the DPDP Rules, 2025.\""
+  },
+  {
+    "ruleId": "D1",
+    "category": "dpo",
+    "categoryLabel": "DPO / Contact Person Disclosure",
+    "title": "Publishes business contact information of a DPO or answerable person",
+    "description": "A Data Fiduciary must publish the business contact information of a Data Protection Officer, if applicable, or a person able to answer questions about the processing of personal data, prominently on its website or app and in every response to a rights request.",
+    "requirement": "The policy must publish reachable business contact details for privacy questions.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 8(9)",
+    "ruleReference": "Rule 9",
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 9 of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)). Citation corrected: the existing frontend ontology cited \"Sections 2(i), 5, 13\". Section 2(i) is a definition. The operative obligation is section 8(9) read with Rule 9.",
+    "weightClass": "MANDATORY",
+    "weight": 3,
+    "severity": "HIGH",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\b([\\w.+-]+@[\\w-]+\\.[\\w.]+)\\b",
+        "\\b(contact\\s+us|reach\\s+(us|out)|get\\s+in\\s+touch)\\b",
+        "\\b(registered\\s+(office|address)|corporate\\s+office|principal\\s+place\\s+of\\s+business)\\b",
+        "\\bdata\\s+fiduciary\\b"
+      ],
+      "supporting": [
+        "\\bcontact\\b",
+        "\\baddress\\b",
+        "\\bemail\\b",
+        "\\bphone|telephone|mobile\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Email address present",
+          "pattern": "\\b[\\w.+-]+@[\\w-]+\\.[\\w.]{2,}\\b"
+        },
+        {
+          "label": "Postal address present",
+          "pattern": "\\b(address|office|street|floor|pin\\s*code|\\b\\d{6}\\b)"
+        },
+        {
+          "label": "Phone number present",
+          "pattern": "(\\+?\\d[\\d\\s().-]{8,}\\d)"
+        },
+        {
+          "label": "Uses DPDPA terminology",
+          "pattern": "\\bdata\\s+(fiduciary|principal|processor)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "contact our data protection officer with privacy questions"
+      ],
+      "portedFrom": "fiduciary_identity"
+    },
+    "recommendation": "Name the legal entity acting as Data Fiduciary along with its registered address, a privacy email address and a phone number.",
+    "remediation": "Publish a dedicated privacy contact (name or role, email, postal address) prominently, and repeat it in every response to a rights request as Rule 9 requires.",
+    "suggestedLanguage": "\"[Legal Entity Name] (CIN: [XXXXX]), having its registered office at [full postal address, PIN], is the Data Fiduciary responsible for your personal data. For any privacy matter, contact privacy@[company].in or +91-XXXXXXXXXX.\""
+  },
+  {
+    "ruleId": "A1",
+    "category": "rights",
+    "categoryLabel": "Right to Access & Correction",
+    "title": "Explains how to request a summary of personal data held",
+    "description": "A Data Principal has the right to obtain a summary of the personal data being processed, the processing activities undertaken, and the identities of other Data Fiduciaries and Data Processors with whom the data has been shared.",
+    "requirement": "The policy must explain how to request access and what the response contains.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 11(1)",
+    "ruleReference": "Rule 14(1)-(2)",
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 14(1)-(2) of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "MANDATORY",
+    "weight": 3,
+    "severity": "HIGH",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\bright\\s+to\\s+(access|obtain|request)\\b[^.]{0,60}\\b(information|data|summary|copy)\\b",
+        "\\b(request|obtain|receive)\\b[^.]{0,60}\\b(a\\s+)?(summary|copy|details)\\b[^.]{0,60}\\b(personal\\s+)?(data|information)\\b",
+        "\\byou\\s+(have\\s+the\\s+right|may|can)\\b[^.]{0,60}\\baccess\\b[^.]{0,50}\\b(your\\s+)?(personal\\s+)?(data|information)\\b"
+      ],
+      "supporting": [
+        "\\bright\\s+to\\s+access\\b",
+        "\\bsubject\\s+access\\b",
+        "\\byour\\s+rights\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Summary of data processed",
+          "pattern": "\\b(summary|copy|list|details)\\b[^.]{0,60}\\b(personal\\s+)?(data|information)\\b"
+        },
+        {
+          "label": "Identities of sharing recipients",
+          "pattern": "\\b(identit(y|ies)|with\\s+whom|recipients?)\\b[^.]{0,70}\\b(shared|disclosed|transferred)\\b"
+        },
+        {
+          "label": "Explains how to make the request",
+          "pattern": "\\b(request|access)\\b[^.]{0,100}\\b(email|writing|contact|portal|form|account)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "request a copy of the personal data you hold about me"
+      ],
+      "portedFrom": "right_access"
+    },
+    "recommendation": "Add a Section 11 access right: a summary of the data held, the processing activities, and the identity of every Fiduciary the data has been shared with — plus the exact channel for making the request.",
+    "remediation": "Add an access-request path and state that the response includes the identities of recipients, as section 11(1)(b) requires.",
+    "suggestedLanguage": "\"Under Section 11 of the DPDPA, 2023 you may request a summary of the personal data we process about you, the processing activities we undertake, and the identities of any other Data Fiduciaries with whom we have shared it. Write to privacy@[company].in and we will respond within 30 days.\""
+  },
+  {
+    "ruleId": "A2",
+    "category": "rights",
+    "categoryLabel": "Right to Access & Correction",
+    "title": "Explains how to request correction, completion and updating",
+    "description": "A Data Principal has the right to correction, completion and updating of her personal data, and the Data Fiduciary must act on such a request.",
+    "requirement": "The policy must explain how to request correction of inaccurate or incomplete data.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 12(1)-(2)",
+    "ruleReference": "Rule 14(1)-(2)",
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 14(1)-(2) of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "MANDATORY",
+    "weight": 3,
+    "severity": "HIGH",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\bright\\s+to\\s+(correct|rectif|updat|complet)\\w*\\b",
+        "\\b(correct|rectify|update|amend|complete)\\b[^.]{0,70}\\b(your\\s+)?(personal\\s+)?(data|information|details)\\b",
+        "\\byou\\s+(may|can|have the right to)\\b[^.]{0,50}\\b(correct|update|amend|rectify)\\b"
+      ],
+      "supporting": [
+        "\\bcorrect(ion)?\\b",
+        "\\bupdate\\b",
+        "\\brectif\\w+\\b",
+        "\\bamend\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Covers correction and completion",
+          "pattern": "\\b(complet\\w+|inaccurate|incomplete|outdated)\\b"
+        },
+        {
+          "label": "Explains how to request correction",
+          "pattern": "\\b(correct|update|amend)\\b[^.]{0,110}\\b(email|writing|contact|settings|account|portal|form)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "ask us to correct inaccurate personal data"
+      ],
+      "portedFrom": "right_correction"
+    },
+    "recommendation": "State the Section 12 right to correction, completion and updating, give the channel for exercising it, and confirm corrections are propagated to recipients the data was shared with.",
+    "remediation": "Name the self-service or written route for correction and confirm all three actions: correct, complete, update.",
+    "suggestedLanguage": "\"Under Section 12 of the DPDPA, 2023 you may request that we correct inaccurate or misleading personal data, complete incomplete data, or update it. Most details can be changed directly in your account; for anything else write to privacy@[company].in. We will also inform every Data Fiduciary with whom we shared that data of the correction.\""
+  },
+  {
+    "ruleId": "A3",
+    "category": "rights",
+    "categoryLabel": "Right to Access & Correction",
+    "title": "Explains how to request erasure of personal data",
+    "description": "A Data Principal may request erasure of her personal data, and the Data Fiduciary must erase it unless retention is necessary for the specified purpose or for compliance with law.",
+    "requirement": "The policy must explain the erasure request route and any lawful retention exception.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 12(3)",
+    "ruleReference": "Rule 14(1)-(2)",
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 14(1)-(2) of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "MANDATORY",
+    "weight": 3,
+    "severity": "HIGH",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\bright\\s+to\\s+(eras(e|ure)|delet(e|ion)|be\\s+forgotten)\\b",
+        "\\b(request|ask)\\b[^.]{0,60}\\b(eras(e|ure)|delet(e|ion)|removal)\\b[^.]{0,60}\\b(your\\s+)?(personal\\s+)?(data|information|account)\\b",
+        "\\byou\\s+(may|can)\\b[^.]{0,50}\\b(delete|erase|remove)\\b[^.]{0,50}\\b(your\\s+)?(data|account|information)\\b"
+      ],
+      "supporting": [
+        "\\beras(e|ure)\\b",
+        "\\bdelet(e|ion)\\b",
+        "\\bremov(e|al)\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Explains how to request erasure",
+          "pattern": "\\b(delete|erase|remov)\\w*\\b[^.]{0,110}\\b(email|writing|contact|settings|account|portal|form|request)\\b"
+        },
+        {
+          "label": "States the legal retention exception",
+          "pattern": "\\b(unless|except)\\b[^.]{0,90}\\b(law|legal|statut|regulat)\\w*"
+        },
+        {
+          "label": "States a response timeline",
+          "pattern": "\\b\\d+\\s*(days?|hours?|weeks?)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "request deletion of my personal data"
+      ],
+      "portedFrom": "right_erasure"
+    },
+    "recommendation": "Give erasure its own clause distinct from account closure, with the request channel, the response timeline, and the narrow legal grounds on which some data may be retained.",
+    "remediation": "Add an erasure route and state honestly which categories are retained for legal reasons and for how long.",
+    "suggestedLanguage": "\"Under Section 12(3) of the DPDPA, 2023 you may request erasure of your personal data. On receiving your request we will erase it within 30 days, except where continued retention is necessary for the specified purpose or is required under applicable law — in which case we will tell you which data was retained and why.\""
+  },
+  {
+    "ruleId": "NM1",
+    "category": "nomination",
+    "categoryLabel": "Right to Nominate",
+    "title": "Describes how to nominate another individual to exercise rights",
+    "description": "A Data Principal has the right to nominate one or more individuals who, in the event of her death or incapacity, may exercise her rights under the Act.",
+    "requirement": "The policy should describe the nomination mechanism and when it takes effect.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 14",
+    "ruleReference": "Rule 14(4)",
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 14(4) of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "RECOMMENDED",
+    "weight": 1,
+    "severity": "LOW",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\bnominat(e|ion|ed)\\b[^.]{0,90}\\b(rights?|behalf|death|incapacit)\\w*",
+        "\\bright\\s+of\\s+nomination\\b",
+        "\\b(in\\s+the\\s+event\\s+of\\s+(your\\s+)?(death|incapacity))\\b"
+      ],
+      "supporting": [
+        "\\bnominat\\w+\\b",
+        "\\blegal\\s+heir\\b",
+        "\\bincapacit\\w+\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Explicitly references nomination",
+          "pattern": "\\bnominat\\w+\\b"
+        },
+        {
+          "label": "Covers death or incapacity",
+          "pattern": "\\b(death|deceased|incapacit\\w+)\\b"
+        },
+        {
+          "label": "Explains how to nominate",
+          "pattern": "\\bnominat\\w+\\b[^.]{0,110}\\b(contact|email|writing|form|settings|account)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "nominate someone to exercise your rights after death or incapacity"
+      ],
+      "portedFrom": "right_nomination"
+    },
+    "recommendation": "Add a Section 14 nomination clause letting a Data Principal name someone to exercise their rights on death or incapacity, and describe how to register that nominee.",
+    "remediation": "Add a nomination section covering the mechanism and the death/incapacity triggers defined in section 14(2).",
+    "suggestedLanguage": "\"Under Section 14 of the DPDPA, 2023 you may nominate any other individual to exercise your rights under the Act on your behalf in the event of your death or incapacity. To register or change a nominee, write to privacy@[company].in with the nominee's name and contact details.\""
+  },
+  {
+    "ruleId": "X1",
+    "category": "cross_border",
+    "categoryLabel": "Cross-Border Data Transfer Disclosure",
+    "title": "Discloses whether personal data is transferred or stored outside India",
+    "description": "Personal data may be transferred outside India subject to requirements the Central Government may specify.",
+    "requirement": "The policy must disclose offshore storage or processing and name the destinations.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 16",
+    "ruleReference": "Rule 15",
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 15 of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "CONDITIONAL",
+    "weight": 2,
+    "severity": "HIGH",
+    "applicability": "CONDITIONAL",
+    "detection": {
+      "anchors": [
+        "\\b(transfer|process|stor)\\w*\\b[^.]{0,80}\\b(outside\\s+india|cross[- ]border|international|another\\s+countr|overseas|abroad)\\b",
+        "\\b(cross[- ]border|international)\\s+(data\\s+)?transfers?\\b",
+        "\\b(servers?|data\\s+cent(re|er)s?)\\b[^.]{0,60}\\b(located|hosted|situated)\\b[^.]{0,60}\\b(outside|abroad|united states|singapore|europe)\\b"
+      ],
+      "supporting": [
+        "\\boutside\\s+india\\b",
+        "\\bcross[- ]border\\b",
+        "\\binternational\\s+transfer\\b",
+        "\\boverseas\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Names destination countries or regions",
+          "pattern": "\\b(united states|usa|singapore|europe|european union|eu|uk|ireland|japan|australia|specified countr)\\b"
+        },
+        {
+          "label": "Applies safeguards to the transfer",
+          "pattern": "\\b(safeguard|contractual|encrypt|equivalent protection|standard clauses)\\b[^.]{0,80}\\btransfer\\b"
+        }
+      ],
+      "applicabilityTriggers": [
+        "\\b(outside\\s+india|cross[- ]border|international|overseas|abroad|global|united states|singapore|europe|aws|azure|google cloud|foreign)\\b"
+      ],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "we store your data on servers outside India"
+      ],
+      "portedFrom": "cross_border"
+    },
+    "recommendation": "Disclose whether personal data is stored or processed outside India, name the destinations, and confirm no transfers are made to territories restricted by the Central Government under Section 16.",
+    "remediation": "Name each destination country and the safeguards applied to the transfer.",
+    "suggestedLanguage": "\"Your personal data is primarily stored on servers located in India. Certain Data Processors we engage may process it in [United States, Singapore]. We do not transfer personal data to any country or territory notified as restricted by the Central Government under Section 16 of the DPDPA, 2023, and all such transfers are protected by contractual safeguards and encryption in transit.\""
+  },
+  {
+    "ruleId": "X2",
+    "category": "cross_border",
+    "categoryLabel": "Cross-Border Data Transfer Disclosure",
+    "title": "Confirms the transfer destination is not a restricted territory",
+    "description": "The Central Government may, by notification, restrict the transfer of personal data to a foreign State. Transfers must meet any requirements specified by general or special order.",
+    "requirement": "The policy should confirm transfers respect restrictions notified under section 16.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 16(1)",
+    "ruleReference": "Rule 15",
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 15 of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)). The supplied sources do not contain a list of restricted territories; no such notification is reproduced in the DPDP Rules 2025. The specific restricted-country list Requires verification.",
+    "weightClass": "CONDITIONAL",
+    "weight": 2,
+    "severity": "MEDIUM",
+    "applicability": "CONDITIONAL",
+    "detection": {
+      "anchors": [
+        "\\b(transfer|process|stor)\\w*\\b[^.]{0,80}\\b(outside\\s+india|cross[- ]border|international|another\\s+countr|overseas|abroad)\\b",
+        "\\b(cross[- ]border|international)\\s+(data\\s+)?transfers?\\b",
+        "\\b(servers?|data\\s+cent(re|er)s?)\\b[^.]{0,60}\\b(located|hosted|situated)\\b[^.]{0,60}\\b(outside|abroad|united states|singapore|europe)\\b"
+      ],
+      "supporting": [
+        "\\boutside\\s+india\\b",
+        "\\bcross[- ]border\\b",
+        "\\binternational\\s+transfer\\b",
+        "\\boverseas\\b"
+      ],
+      "specifics": [
+        {
+          "label": "References the Section 16 restriction",
+          "pattern": "\\b(restrict|notif(y|ied|ication)|permitted|central government|not(ified)? territor)\\b"
+        }
+      ],
+      "applicabilityTriggers": [
+        "\\b(outside\\s+india|cross[- ]border|international|overseas|abroad|global|united states|singapore|europe|aws|azure|google cloud|foreign)\\b"
+      ],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "we do not transfer data to restricted countries"
+      ],
+      "portedFrom": "cross_border"
+    },
+    "recommendation": "State that no personal data is transferred to any country or territory restricted by the Central Government under section 16, and that transfers meet any requirements specified by order.",
+    "remediation": "Add a section 16 compliance sentence to the international transfer clause.",
+    "suggestedLanguage": "\"We do not transfer personal data to any country or territory in respect of which the Central Government has, by notification under Section 16 of the DPDPA, 2023, restricted such transfer, and every transfer we make meets the requirements specified by the Central Government under Rule 15 of the DPDP Rules, 2025.\""
+  },
+  {
+    "ruleId": "SDF1",
+    "category": "sdf",
+    "categoryLabel": "Significant Data Fiduciary Obligations",
+    "title": "Discloses that a Data Protection Impact Assessment is conducted",
+    "description": "A Significant Data Fiduciary must undertake a Data Protection Impact Assessment and an audit once every twelve months, and furnish a report of significant observations to the Board.",
+    "requirement": "An SDF policy should disclose the DPIA and its cadence.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 10(2)(c)",
+    "ruleReference": "Rule 13(1)-(2)",
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 13(1)-(2) of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "CONDITIONAL",
+    "weight": 2,
+    "severity": "HIGH",
+    "applicability": "CONDITIONAL",
+    "detection": {
+      "anchors": [
+        "\\bsignificant\\s+data\\s+fiduciary\\b",
+        "\\bdata\\s+protection\\s+officer\\b",
+        "\\bdata\\s+protection\\s+impact\\s+assessment\\b|\\bdpia\\b",
+        "\\b(independent\\s+)?data\\s+auditor\\b"
+      ],
+      "supporting": [
+        "\\bdpo\\b",
+        "\\baudit(or|ing)?\\b",
+        "\\bimpact\\s+assessment\\b",
+        "\\bperiodic\\s+review\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Periodic DPIA / audit",
+          "pattern": "\\b(periodic|annual|regular)\\b[^.]{0,60}\\b(audit|assessment|review)\\b"
+        }
+      ],
+      "applicabilityTriggers": [
+        "\\b(significant\\s+data\\s+fiduciary|data\\s+protection\\s+officer|dpo|impact\\s+assessment|dpia|data\\s+auditor|large\\s+(volume|scale)|millions?\\s+of\\s+users?|enterprise)\\b"
+      ],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "we conduct a data protection impact assessment annually"
+      ],
+      "portedFrom": "significant_fiduciary"
+    },
+    "recommendation": "If notified as a Significant Data Fiduciary, disclose that a DPIA and audit are carried out every twelve months and that significant observations are reported to the Board.",
+    "remediation": "Add an SDF obligations section stating the twelve-month DPIA and audit cycle required by Rule 13(1).",
+    "suggestedLanguage": "\"As an entity notified as a Significant Data Fiduciary, we undertake a Data Protection Impact Assessment and an independent audit once every twelve months and furnish a report of significant observations to the Data Protection Board, as required by Rule 13(1)-(2) of the DPDP Rules, 2025.\""
+  },
+  {
+    "ruleId": "SDF2",
+    "category": "sdf",
+    "categoryLabel": "Significant Data Fiduciary Obligations",
+    "title": "Discloses appointment of an independent data auditor",
+    "description": "A Significant Data Fiduciary must appoint an independent data auditor to carry out data audits.",
+    "requirement": "An SDF policy should disclose the independent auditor arrangement.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 10(2)(b)",
+    "ruleReference": "Rule 13(1)-(2)",
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 13(1)-(2) of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "CONDITIONAL",
+    "weight": 2,
+    "severity": "MEDIUM",
+    "applicability": "CONDITIONAL",
+    "detection": {
+      "anchors": [
+        "\\bsignificant\\s+data\\s+fiduciary\\b",
+        "\\bdata\\s+protection\\s+officer\\b",
+        "\\bdata\\s+protection\\s+impact\\s+assessment\\b|\\bdpia\\b",
+        "\\b(independent\\s+)?data\\s+auditor\\b"
+      ],
+      "supporting": [
+        "\\bdpo\\b",
+        "\\baudit(or|ing)?\\b",
+        "\\bimpact\\s+assessment\\b",
+        "\\bperiodic\\s+review\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Independent data auditor",
+          "pattern": "\\b(independent\\s+)?data\\s+auditor\\b"
+        }
+      ],
+      "applicabilityTriggers": [
+        "\\b(significant\\s+data\\s+fiduciary|data\\s+protection\\s+officer|dpo|impact\\s+assessment|dpia|data\\s+auditor|large\\s+(volume|scale)|millions?\\s+of\\s+users?|enterprise)\\b"
+      ],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "an independent auditor reviews our data handling"
+      ],
+      "portedFrom": "significant_fiduciary"
+    },
+    "recommendation": "Disclose that an independent data auditor evaluates compliance, and how often.",
+    "remediation": "Name the audit cadence and confirm auditor independence.",
+    "suggestedLanguage": "\"We appoint an independent data auditor to evaluate our compliance with the DPDPA, 2023 and the DPDP Rules, 2025, and the audit is carried out at least once every twelve months.\""
+  },
+  {
+    "ruleId": "SDF3",
+    "category": "sdf",
+    "categoryLabel": "Significant Data Fiduciary Obligations",
+    "title": "Discloses appointment of an India-based Data Protection Officer",
+    "description": "A Significant Data Fiduciary must appoint a Data Protection Officer who is based in India and is responsible to the board of directors or similar governing body.",
+    "requirement": "An SDF policy should name a DPO based in India as the point of contact for grievance redressal.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 10(2)(a)",
+    "ruleReference": null,
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification.",
+    "weightClass": "CONDITIONAL",
+    "weight": 2,
+    "severity": "HIGH",
+    "applicability": "CONDITIONAL",
+    "detection": {
+      "anchors": [
+        "\\bsignificant\\s+data\\s+fiduciary\\b",
+        "\\bdata\\s+protection\\s+officer\\b",
+        "\\bdata\\s+protection\\s+impact\\s+assessment\\b|\\bdpia\\b",
+        "\\b(independent\\s+)?data\\s+auditor\\b"
+      ],
+      "supporting": [
+        "\\bdpo\\b",
+        "\\baudit(or|ing)?\\b",
+        "\\bimpact\\s+assessment\\b",
+        "\\bperiodic\\s+review\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Appoints a Data Protection Officer",
+          "pattern": "\\bdata\\s+protection\\s+officer|dpo\\b"
+        },
+        {
+          "label": "DPO based in India",
+          "pattern": "\\b(based|located|resident)\\s+in\\s+india\\b"
+        }
+      ],
+      "applicabilityTriggers": [
+        "\\b(significant\\s+data\\s+fiduciary|data\\s+protection\\s+officer|dpo|impact\\s+assessment|dpia|data\\s+auditor|large\\s+(volume|scale)|millions?\\s+of\\s+users?|enterprise)\\b"
+      ],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "our data protection officer is based in India"
+      ],
+      "portedFrom": "significant_fiduciary"
+    },
+    "recommendation": "If the organisation is likely to be notified as a Significant Data Fiduciary, document the India-based DPO, the independent data auditor, and the DPIA and audit cadence.",
+    "remediation": "Name the DPO, confirm India residence, and state that the DPO reports to the governing body.",
+    "suggestedLanguage": "\"Where we are notified as a Significant Data Fiduciary under Section 10 of the DPDPA, 2023, we have appointed a Data Protection Officer based in India who reports to our Board, engaged an independent data auditor, and we conduct a Data Protection Impact Assessment and a data audit at least once every 12 months.\""
+  },
+  {
+    "ruleId": "BC1",
+    "category": "cookies",
+    "categoryLabel": "Cookie & Tracker Behaviour Cross-Check",
+    "title": "Cookies and trackers on the live site match what the policy discloses",
+    "description": "A behavioural cross-check comparing trackers actually running on the live website against those the policy discloses. This is a project-specific implementation of the notice and consent obligations, not a distinct statutory clause.",
+    "requirement": "Requires a live website scan. Not evaluable from an uploaded document alone.",
+    "sourceType": "PROJECT_SPECIFIC",
+    "legalBasis": "Project-specific check implementing Sections 5 and 6 in practice",
+    "actSection": null,
+    "ruleReference": null,
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "effectiveNote": "The Rule Engine Design Document classifies Category 15 as a project-specific addition, not a direct statutory clause. It requires a live website behaviour scan, which this document-upload workflow does not perform.",
+    "weightClass": "RECOMMENDED",
+    "weight": 1,
+    "severity": "LOW",
+    "applicability": "REQUIRES_LIVE_SCAN",
+    "detection": {
+      "anchors": [
+        "\\bcookies?\\b",
+        "\\btrack(er|ers|ing)\\b",
+        "\\b(pixel|beacon|analytics\\s+script|third[- ]party\\s+script)\\b"
+      ],
+      "supporting": [
+        "\\bcookie\\s+(policy|banner|consent)\\b",
+        "\\blocal\\s+storage\\b",
+        "\\bgoogle\\s+analytics\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Policy discloses cookies or trackers",
+          "pattern": "\\bcookies?\\b|\\btrack(er|ing)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "we use cookies and tracking technologies"
+      ],
+      "portedFrom": null
+    },
+    "recommendation": "Disclose every cookie and tracker category the site actually sets, and obtain consent before setting non-essential ones.",
+    "remediation": "Run a live tracker audit and reconcile it against the cookie disclosure in the policy.",
+    "suggestedLanguage": null
+  },
+  {
+    "ruleId": "BC2",
+    "category": "cookies",
+    "categoryLabel": "Cookie & Tracker Behaviour Cross-Check",
+    "title": "No undisclosed third-party data-collecting scripts are running",
+    "description": "A behavioural cross-check for third-party scripts collecting personal data that the policy does not disclose. Project-specific, not a distinct statutory clause.",
+    "requirement": "Requires a live website scan. Not evaluable from an uploaded document alone.",
+    "sourceType": "PROJECT_SPECIFIC",
+    "legalBasis": "Project-specific check implementing Sections 5 and 6 in practice",
+    "actSection": null,
+    "ruleReference": null,
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "effectiveNote": "Requires a live website behaviour scan, which this document-upload workflow does not perform.",
+    "weightClass": "RECOMMENDED",
+    "weight": 1,
+    "severity": "LOW",
+    "applicability": "REQUIRES_LIVE_SCAN",
+    "detection": {
+      "anchors": [
+        "\\bthird[- ]part(y|ies)\\b[^.]{0,60}\\b(script|tag|sdk|pixel|analytics)\\b"
+      ],
+      "supporting": [
+        "\\bthird[- ]part(y|ies)\\b",
+        "\\bsdk\\b",
+        "\\badvertis\\w*"
+      ],
+      "specifics": [
+        {
+          "label": "Names third-party collectors",
+          "pattern": "\\b(google|meta|facebook|hotjar|segment|mixpanel|amplitude|doubleclick)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "third party scripts collect data on our site"
+      ],
+      "portedFrom": null
+    },
+    "recommendation": "Enumerate every third party that receives personal data through the site, and remove or disclose any that are undisclosed.",
+    "remediation": "Inventory third-party tags and add each to the policy, or remove them.",
+    "suggestedLanguage": null
+  },
+  {
+    "ruleId": "AX1",
+    "category": "additional",
+    "categoryLabel": "Additional Statutory Obligations",
+    "title": "Data Processors are engaged only under a valid contract",
+    "description": "A Data Fiduciary may engage a Data Processor to process personal data on its behalf for any activity related to offering goods or services only under a valid contract, and remains responsible for compliance regardless.",
+    "requirement": "The policy should state that processors are bound by contract and that the Fiduciary retains responsibility.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 8(1)-(2)",
+    "ruleReference": "Rule 6(1)(f)",
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": "2027-05-13",
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Rule 6(1)(f) of the DPDP Rules 2025 comes into force eighteen months after publication of G.S.R. 846(E), i.e. 2027-05-13 (Rule 1(2)-(4)).",
+    "weightClass": "RECOMMENDED",
+    "weight": 1,
+    "severity": "MEDIUM",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\bdata\\s+processors?\\b",
+        "\\b(valid\\s+)?(contract|agreement|dpa)\\b[^.]{0,90}\\b(processor|vendor|service provider|sub[- ]processor)\\b",
+        "\\b(processor|vendor|service provider)s?\\b[^.]{0,90}\\b(only\\s+on\\s+our\\s+instructions?|bound\\s+by|under\\s+contract|contractual(ly)?)\\b"
+      ],
+      "supporting": [
+        "\\bprocessor\\b",
+        "\\bsub[- ]?processor\\b",
+        "\\bdata\\s+processing\\s+agreement\\b",
+        "\\bcontractual\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Uses the \"Data Processor\" term",
+          "pattern": "\\bdata\\s+processors?\\b"
+        },
+        {
+          "label": "Requires a written contract",
+          "pattern": "\\b(written\\s+)?(contract|agreement|dpa)\\b"
+        },
+        {
+          "label": "Processing limited to instructions",
+          "pattern": "\\bonly\\s+(on|in accordance with)\\s+(our|the fiduciary'?s?)\\s+instructions?\\b"
+        },
+        {
+          "label": "Retains Fiduciary responsibility",
+          "pattern": "\\b(remain\\w*|continue\\w*)\\s+(responsible|liable|accountable)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "our vendors process data only under contract and on our instructions"
+      ],
+      "portedFrom": "processor_obligations"
+    },
+    "recommendation": "State that every processor is engaged under a written contract limiting it to your documented instructions, and that you remain responsible for its compliance.",
+    "remediation": "Add a processor clause confirming written contracts, instruction-limited processing, and retained Fiduciary responsibility.",
+    "suggestedLanguage": "\"Where we engage a Data Processor, we do so only under a valid written contract that limits the processor to processing personal data on our documented instructions, requires equivalent security safeguards, and prohibits onward sub-processing without our prior written approval. We remain responsible for compliance under Section 8(2) of the DPDPA, 2023.\""
+  },
+  {
+    "ruleId": "AX2",
+    "category": "additional",
+    "categoryLabel": "Additional Statutory Obligations",
+    "title": "Discloses categories of recipients with whom personal data is shared",
+    "description": "A Data Principal may obtain the identities of all other Data Fiduciaries and Data Processors with whom her personal data has been shared, along with a description of the data shared.",
+    "requirement": "The policy should identify recipient categories and the basis for sharing.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 11(1)(b)",
+    "ruleReference": null,
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification. Citation corrected: the existing frontend ontology coded this as section 8(2), which concerns engaging a Data Processor under a valid contract. The disclosure duty is section 11(1)(b).",
+    "weightClass": "MANDATORY",
+    "weight": 3,
+    "severity": "HIGH",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\b(share|disclos|transfer|provide)\\w*\\b[^.]{0,90}\\b(third[- ]part(y|ies)|service providers?|partners?|vendors?|processors?|affiliates?)\\b",
+        "\\b(third[- ]part(y|ies)|service providers?)\\b[^.]{0,80}\\b(access|receive|process)\\b",
+        "\\bwe\\s+do\\s+not\\s+(sell|share|rent|trade)\\b[^.]{0,50}\\b(personal\\s+)?(data|information)\\b"
+      ],
+      "supporting": [
+        "\\bthird\\s+part(y|ies)\\b",
+        "\\bservice\\s+providers?\\b",
+        "\\bsub[- ]?processors?\\b",
+        "\\bdisclos(e|ure)\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Identifies recipient categories",
+          "pattern": "\\b(categor(y|ies)\\s+of\\s+recipients?|payment (processors?|gateways?)|cloud|analytics|hosting|logistics|courier)\\b"
+        },
+        {
+          "label": "Binds recipients contractually",
+          "pattern": "\\b(contract|agreement|obligat\\w+|bound|require)\\b[^.]{0,90}\\b(processor|third[- ]part|vendor|provider)\\b"
+        },
+        {
+          "label": "Addresses legal / regulatory disclosure",
+          "pattern": "\\b(law\\s+enforcement|court|legal\\s+(process|obligation|request)|regulator)\\b"
+        },
+        {
+          "label": "States no sale of personal data",
+          "pattern": "\\bnot\\s+sell\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "who we share your personal data with"
+      ],
+      "portedFrom": "data_sharing"
+    },
+    "recommendation": "List the categories of recipients and the purpose of each disclosure, and state that every Data Processor is bound by a written contract carrying the same obligations.",
+    "remediation": "List recipient categories, the purpose of each disclosure, and whether personal data is ever sold.",
+    "suggestedLanguage": "\"We share personal data only with the categories of recipients listed below, and only for the purpose stated: payment gateways (to process payments), cloud hosting providers (to store data), and analytics providers (to measure usage). Every such recipient is engaged as a Data Processor under a written contract requiring it to process the data only on our instructions and to apply equivalent security safeguards. We do not sell your personal data.\""
+  },
+  {
+    "ruleId": "AX3",
+    "category": "additional",
+    "categoryLabel": "Additional Statutory Obligations",
+    "title": "Informs Data Principals of their statutory duties",
+    "description": "A Data Principal must comply with applicable law when exercising rights, must not impersonate another person, must not suppress material information, must not register false or frivolous grievances, and must furnish verifiably authentic information.",
+    "requirement": "The policy should summarise the duties section 15 places on the Data Principal.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 15",
+    "ruleReference": null,
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification.",
+    "weightClass": "RECOMMENDED",
+    "weight": 1,
+    "severity": "LOW",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\bdut(y|ies)\\s+of\\s+(the\\s+)?data\\s+principal\\b",
+        "\\byour\\s+(duties|responsibilities|obligations)\\b",
+        "\\b(not\\s+to\\s+)?(impersonat\\w+|false\\s+(or\\s+frivolous\\s+)?(grievance|complaint)|suppress\\w*\\s+(any\\s+)?material\\s+information)\\b"
+      ],
+      "supporting": [
+        "\\bduties\\b",
+        "\\bresponsibilit\\w+\\b",
+        "\\bfrivolous\\b",
+        "\\bimpersonat\\w+\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Prohibits impersonation",
+          "pattern": "\\bimpersonat\\w+\\b"
+        },
+        {
+          "label": "Prohibits false or frivolous grievances",
+          "pattern": "\\b(false|frivolous)\\b[^.]{0,40}\\b(grievance|complaint)\\b"
+        },
+        {
+          "label": "Requires authentic information",
+          "pattern": "\\b(authentic|accurate|genuine|true)\\b[^.]{0,60}\\b(information|data|details)\\b"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "your duties when exercising your data rights"
+      ],
+      "portedFrom": "principal_duties"
+    },
+    "recommendation": "Summarise the Section 15 duties so Data Principals understand their side of the arrangement — no impersonation, no suppression of material information, no false grievances.",
+    "remediation": "Add a short \"Your duties\" section paraphrasing section 15 without overstating it as a limitation on rights.",
+    "suggestedLanguage": "\"Under Section 15 of the DPDPA, 2023 you are required to comply with applicable law when exercising your rights, not to impersonate another person while providing personal data, not to suppress any material information when providing it for an official document, and not to register a false or frivolous grievance.\""
+  },
+  {
+    "ruleId": "AX4",
+    "category": "additional",
+    "categoryLabel": "Additional Statutory Obligations",
+    "title": "Policy carries a version or effective date and commits to notifying changes",
+    "description": "Where consent was given before commencement of the Act, the Data Fiduciary must give notice as soon as reasonably practicable. Version and effective-date transparency is the practical mechanism for that.",
+    "requirement": "The policy should show an effective date and describe how changes are communicated.",
+    "sourceType": "ACT",
+    "legalBasis": "DPDPA 2023",
+    "actSection": "Section 5(2)",
+    "ruleReference": null,
+    "scheduleReference": null,
+    "sourceUrl": "https://www.dpdpa.com/",
+    "ruleVersion": "1.0.0",
+    "legalVersion": "DPDPA 2023 (Act 22 of 2023); DPDP Rules 2025 (G.S.R. 846(E), 13 Nov 2025)",
+    "effectiveFrom": null,
+    "effectiveTo": null,
+    "effectiveNote": "The DPDP Act 2023 commences on such date as the Central Government may notify under section 1(2). The supplied source documents do not establish the notified commencement date for this section. Requires verification.",
+    "weightClass": "RECOMMENDED",
+    "weight": 1,
+    "severity": "LOW",
+    "applicability": "ALWAYS",
+    "detection": {
+      "anchors": [
+        "\\b(last\\s+(updated|revised|modified)|effective\\s+(date|from)|version)\\b",
+        "\\b(we\\s+may\\s+)?(update|revise|amend|modify|change)\\b[^.]{0,70}\\b(this\\s+)?(policy|notice)\\b",
+        "\\b(notify|inform|communicate)\\b[^.]{0,80}\\b(changes?|updates?|revisions?)\\b"
+      ],
+      "supporting": [
+        "\\bupdated?\\b",
+        "\\brevis\\w+\\b",
+        "\\beffective\\s+date\\b",
+        "\\bversion\\b"
+      ],
+      "specifics": [
+        {
+          "label": "Shows an effective / updated date",
+          "pattern": "\\b(last\\s+(updated|revised|modified)|effective\\s+(date|from))\\b[^.]{0,40}\\b(\\d{1,2}\\s*\\w+\\s*\\d{4}|\\d{4}|\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4})"
+        },
+        {
+          "label": "Commits to notifying changes",
+          "pattern": "\\b(notify|inform|communicate|email|post)\\b[^.]{0,70}\\b(chang|updat|revis)\\w*"
+        },
+        {
+          "label": "Version identifier present",
+          "pattern": "\\bversion\\s*[:v]?\\s*\\d"
+        }
+      ],
+      "applicabilityTriggers": [],
+      "negativeIndicators": [],
+      "semanticConcepts": [
+        "this policy was last updated on"
+      ],
+      "portedFrom": "policy_updates"
+    },
+    "recommendation": "Carry a visible effective date and version number, and commit to notifying Data Principals of material changes before they take effect.",
+    "remediation": "Add \"Last updated\" and a version number, and state how material changes are notified.",
+    "suggestedLanguage": "\"Version 2.1 — effective 1 January 2026. We review this Notice at least annually. Where we make a material change we will notify you by email and in-product at least 15 days before it takes effect, and where the change requires it we will seek fresh consent. Previous versions are archived at [link].\""
+  }
+]

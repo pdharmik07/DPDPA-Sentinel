@@ -9,7 +9,7 @@ dist/
 *.log
 npm-debug.log*
 
-# Environment
+# Environment (matched at any depth)
 .env
 .env.*
 !.env.example

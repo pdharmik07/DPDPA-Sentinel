@@ -1,0 +1,9 @@
+# Keep line endings stable across Windows/macOS/Linux checkouts.
+* text=auto eol=lf
+
+# Binary sources — never touch.
+*.pdf  binary
+*.docx binary
+*.png  binary
+*.jpg  binary
+*.ico  binary

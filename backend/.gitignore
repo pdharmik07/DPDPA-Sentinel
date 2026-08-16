@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+uploads/*
+!uploads/.gitkeep
+reports/*
+!reports/.gitkeep
+
+# Embedded PostgreSQL data directories (dev/test harnesses)
+.pgdata*/

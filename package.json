@@ -2,36 +2,28 @@
   "name": "dpdpa-sentinel",
   "private": true,
   "version": "1.0.0",
-  "type": "module",
-  "description": "DPDPA Sentinel - AI-Powered Privacy & DPDPA Compliance Analyzer",
+  "description": "DPDPA Sentinel — automated preliminary DPDPA 2023 / DPDP Rules 2025 compliance assessment platform",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "preview": "vite preview",
-    "typecheck": "tsc -b --noEmit"
+    "dev": "npm run dev --prefix frontend",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:backend": "npm run dev --prefix backend",
+    "build": "npm run build --prefix frontend",
+    "build:frontend": "npm run build --prefix frontend",
+    "build:backend": "npm run build --prefix backend",
+    "typecheck": "npm run typecheck --prefix frontend && npm run typecheck --prefix backend",
+    "test": "npm test --prefix backend",
+    "install:all": "npm install --prefix frontend && npm install --prefix backend",
+    "db:migrate": "npm run prisma:migrate --prefix backend",
+    "db:seed": "npm run db:seed --prefix backend",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down",
+    "test:engine": "npm run test:engine --prefix backend",
+    "test:api": "npm run test:api --prefix backend",
+    "verify": "npm run typecheck && npm test && npm run build",
+    "db:local": "npm run db:local --prefix backend",
+    "db:local:setup": "npm run db:local:setup --prefix backend"
   },
-  "dependencies": {
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "framer-motion": "^11.15.0",
-    "jspdf": "^2.5.2",
-    "lucide-react": "^0.468.0",
-    "mammoth": "^1.9.0",
-    "pdfjs-dist": "^4.9.155",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.28.0",
-    "recharts": "^2.15.0",
-    "tailwind-merge": "^2.6.0"
-  },
-  "devDependencies": {
-    "@tailwindcss/vite": "^4.0.0",
-    "@types/node": "^26.2.0",
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
-    "@vitejs/plugin-react": "^4.3.4",
-    "tailwindcss": "^4.0.0",
-    "typescript": "^5.7.2",
-    "vite": "^6.0.7"
+  "engines": {
+    "node": ">=20"
   }
 }
