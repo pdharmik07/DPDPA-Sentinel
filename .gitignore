@@ -20,3 +20,7 @@ npm-debug.log*
 .idea/
 .DS_Store
 Thumbs.db
+
+# A clone of this repo made inside itself (git clone run from the project
+# directory). Harmless on disk, but it must never be committed as a gitlink.
+/DPDPA-Sentinel/
