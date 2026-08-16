@@ -194,7 +194,26 @@ cd nlp-service
 python -m venv .venv
 ```
 
-Activate — PowerShell: `.venv\Scripts\Activate.ps1` · bash: `source .venv/Scripts/activate`
+**Now activate it.** This step is not optional and is the most common thing to miss:
+
+```bash
+.venv\Scripts\Activate.ps1
+```
+
+> PowerShell may refuse with *"running scripts is disabled on this system"*. Either allow it for your
+> user with `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`, or use the .bat instead:
+> `.venv\Scripts\activate.bat`. In bash/Git Bash: `source .venv/Scripts/activate`.
+
+Confirm it worked — your prompt should now start with `(.venv)`, and this must print a path inside
+`nlp-service\.venv`:
+
+```bash
+python -c "import sys; print(sys.prefix)"
+```
+
+**If `pip install` prints "Defaulting to user installation because normal site-packages is not
+writeable", the venv is NOT active** — everything will land in your global Python and `uvicorn` will
+not be on your PATH. Stop and activate first.
 
 ```bash
 pip install -r requirements.txt
@@ -208,7 +227,16 @@ python -m spacy download en_core_web_sm
 uvicorn app.main:app --port 8000
 ```
 
-First run downloads roughly 90 MB of models (plus PyTorch, which is large).
+First run downloads roughly 90 MB of models, plus PyTorch, which is a further ~2 GB.
+
+Verify at <http://localhost:8000/health>, and the backend's own health will flip to
+`"nlp": "available"` on its next check.
+
+Run the NLP tests (these pass with or without the models installed):
+
+```bash
+python -m pytest tests -q
+```
 
 ---
 
@@ -234,6 +262,11 @@ Prisma schema or the rule pack.
 | API calls fail with a CORS error | The frontend is on a port not in `FRONTEND_URL`. Add it in `backend/.env` and restart the backend. |
 | `JWT_SECRET must be at least 32 characters` | Step 2 was skipped. |
 | Blank page after sign-in | Hard-reload (`Ctrl+Shift+R`) to clear a stale bundle. |
+| pip: `Defaulting to user installation` | The virtualenv is not activated. Activate it, then reinstall. |
+| pip: `No matching distribution found for spacy` | An exact pin with no wheel for your Python. `requirements.txt` now uses ranges — pull the latest and retry. |
+| `uvicorn: The term is not recognized` | Installed outside the venv, or the venv is not activated. |
+| `No module named spacy` | Same cause — activate the venv before `python -m spacy download`. |
+| PowerShell: `running scripts is disabled` | `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`, or use `.venv\Scripts\activate.bat`. |
 
 ---
 

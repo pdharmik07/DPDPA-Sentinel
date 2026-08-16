@@ -125,7 +125,9 @@ cd nlp-service
 python -m venv .venv
 ```
 
-Activate it — PowerShell: `.venv\Scripts\Activate.ps1` · bash: `source .venv/Scripts/activate`
+**Activate it before installing** — PowerShell: `.venv\Scripts\Activate.ps1` · bash:
+`source .venv/Scripts/activate`. If pip says "Defaulting to user installation", it is not active and
+the packages will go to your global Python. Full walkthrough: [docs/RUNNING.md](docs/RUNNING.md).
 
 ```bash
 pip install -r requirements.txt
