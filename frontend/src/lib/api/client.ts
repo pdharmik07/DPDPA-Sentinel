@@ -86,6 +86,44 @@ async function toApiError(response: Response): Promise<ApiError> {
   );
 }
 
+/** http://localhost and http://127.0.0.1 — an address only this machine can resolve. */
+function isLoopback(url: string): boolean {
+  return /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(url.replace(/\/+$/, ''));
+}
+
+/**
+ * fetch reports a blocked CORS preflight and a backend that is not running as
+ * the same opaque TypeError, so the cause has to be inferred from the two
+ * origins involved.
+ *
+ * The case worth naming is a hosted build with no VITE_API_URL: it falls back
+ * to localhost:4000, which resolves to the *visitor's* machine, not the
+ * server's. That looked identical to "the backend is down" and sent people off
+ * restarting a backend that was running perfectly well.
+ */
+function unreachableError(): ApiError {
+  const pageOrigin = typeof window === 'undefined' ? '' : window.location.origin;
+
+  if (isLoopback(API_BASE) && pageOrigin !== '' && !isLoopback(pageOrigin)) {
+    return new ApiError(
+      0,
+      'network_error',
+      `This site is hosted, but it is calling ${API_BASE}.`,
+      `${API_BASE} only exists on your own machine, so the hosted app can never reach it. ` +
+        'Open the app at http://localhost:5173 to use your local backend, or set VITE_API_URL ' +
+        'on the host to a deployed backend URL and redeploy.',
+    );
+  }
+
+  return new ApiError(
+    0,
+    'network_error',
+    'Cannot reach the DPDPA Sentinel backend.',
+    `Tried ${API_BASE}. Start it with "npm run dev" from the project root, and make sure ` +
+      `this page's origin (${pageOrigin || 'unknown'}) is listed in FRONTEND_URL in backend/.env.`,
+  );
+}
+
 export async function request<T>(path: string, options: RequestOptions = {}): Promise<T> {
   const headers: Record<string, string> = {};
 
@@ -112,12 +150,7 @@ export async function request<T>(path: string, options: RequestOptions = {}): Pr
       signal: options.signal,
     });
   } catch {
-    throw new ApiError(
-      0,
-      'network_error',
-      'Cannot reach the DPDPA Sentinel backend.',
-      'Check that the backend is running and that VITE_API_URL points at it.',
-    );
+    throw unreachableError();
   }
 
   if (response.status === 401) {

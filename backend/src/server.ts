@@ -1,5 +1,5 @@
 import { createApp } from './app.js';
-import { env } from './config/env.js';
+import { env, port } from './config/env.js';
 import { logger } from './config/logger.js';
 import { disconnectPrisma, prisma } from './config/prisma.js';
 import { loadRulePack } from './engine/rulePack.js';
@@ -19,8 +19,8 @@ async function main(): Promise<void> {
   await recoverStuckScans();
 
   const app = createApp();
-  const server = app.listen(env.BACKEND_PORT, () => {
-    logger.info({ port: env.BACKEND_PORT, env: env.NODE_ENV }, 'DPDPA Sentinel backend listening');
+  const server = app.listen(port, () => {
+    logger.info({ port, env: env.NODE_ENV }, 'DPDPA Sentinel backend listening');
   });
 
   const shutdown = (signal: string) => {

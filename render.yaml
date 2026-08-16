@@ -1,0 +1,46 @@
+# One-click deploy of the DPDPA Sentinel backend + its database.
+#
+# Render → New → Blueprint → connect this repo. Everything below is created for
+# you; the only value you supply by hand is FRONTEND_URL (the Vercel URL that is
+# allowed to call this API).
+#
+# The frontend stays on Vercel. It needs VITE_API_URL set to this service's URL
+# and a redeploy — Vite inlines that value at build time, so setting it after a
+# build has no effect.
+
+services:
+  - type: web
+    name: dpdpa-sentinel-api
+    runtime: node
+    plan: free
+    rootDir: backend
+    # --include=dev is required: NODE_ENV=production would otherwise skip the
+    # devDependencies, and the build needs typescript, prisma and tsx.
+    buildCommand: npm ci --include=dev && npm run build:prod
+    startCommand: npm run start:prod
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DATABASE_URL
+        fromDatabase:
+          name: dpdpa-sentinel-db
+          property: connectionString
+      # Set this to your frontend origin, e.g. https://dpdpa-sentinel.vercel.app
+      # Comma-separated if there is more than one. No trailing slash.
+      - key: FRONTEND_URL
+        sync: false
+      # The Python NLP service is optional and not deployed here. Scans run on
+      # the deterministic engine and are flagged nlpAvailable: false.
+      - key: NLP_ENABLED
+        value: 'false'
+      - key: LOG_LEVEL
+        value: info
+
+databases:
+  - name: dpdpa-sentinel-db
+    plan: free
+    databaseName: dpdpa_sentinel
+    user: dpdpa

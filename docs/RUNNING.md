@@ -31,132 +31,103 @@ This installs `frontend/` and `backend/` (about 500 packages, one to two minutes
 
 ---
 
-## 2. Configure the backend
+## 2. Configuration
+
+None needed. `npm run dev` (step 3) creates `backend/.env` and `frontend/.env.local` from their
+examples and generates a `JWT_SECRET` for you. It never overwrites a file that already exists.
+
+To run only that step:
 
 ```bash
-cd backend
+npm run setup
 ```
 
-```bash
-cp .env.example .env
-```
+> Older instructions told you to `cp .env.example .env` and generate a secret with
+> `openssl rand -base64 48`. Don't. `openssl` is not on a stock Windows install, and re-running the
+> `cp` **wipes the secret you already had**, after which the backend refuses to start. `npm run setup`
+> replaces both steps and is safe to run any number of times.
 
-> PowerShell users: `cp` is an alias for `Copy-Item`, so this works as-is.
-
-Generate a JWT signing secret:
-
-```bash
-openssl rand -base64 48
-```
-
-Open `backend/.env` and paste the output as `JWT_SECRET`. **The server refuses to start without a
-secret of at least 32 characters** — that is deliberate, so a misconfigured deployment fails loudly
-rather than silently signing tokens with a weak key.
-
-Nothing else in `.env` needs changing for local development.
+The generated `JWT_SECRET` is 48 random bytes from Node's CSPRNG. The server refuses to start on
+anything under 32 characters — deliberate, so a misconfigured deployment fails loudly rather than
+silently signing tokens with a weak key.
 
 ---
 
-## 3. Start PostgreSQL
+## 3. Start everything
 
-Pick **one** path.
-
-### Path A — no Docker (recommended on Windows)
-
-The backend ships an embedded PostgreSQL that needs no Docker and no admin rights. It runs on port
-**55432** and supplies its own `DATABASE_URL`, so it ignores the one in `.env`.
-
-Create the schema and load the 41-rule pack (once):
+From the repository root:
 
 ```bash
-npm run db:local:setup
+npm run dev
 ```
 
-Expect:
+One command, one terminal. It starts **PostgreSQL, the backend API and the frontend** together,
+waits for the API and then prints the URL:
 
 ```
-All migrations have been successfully applied.
-Seeding rule pack dpdpa-sentinel-core v1.0.0 — 41 rules
-  created 41, updated 0
+[backend] postgres ready
+[backend] INFO: rule pack loaded  rules: 41
+[backend] INFO: database connection ok
+[backend] INFO: DPDPA Sentinel backend listening  port: 4000
+==> DPDPA Sentinel is ready: http://localhost:5173
 ```
 
-### Path B — Docker
+Leave it running and open <http://localhost:5173>. Ctrl+C stops all three.
+
+The first start takes a minute or two while PostgreSQL initialises its data directory; later starts
+take seconds. Migrations and the 41-rule pack are applied automatically on every start, so there is
+no separate setup step and no way to end up with an empty database.
+
+The database is an **embedded PostgreSQL** on port **55432** — no Docker, no admin rights, no global
+install. Its data lives in `backend/.pgdata` and persists between runs. Because the harness supplies
+its own `DATABASE_URL` to the processes it wraps, the `DATABASE_URL` in `backend/.env` is unused on
+this path.
+
+Confirm the API separately if you want — <http://localhost:4000/api/health>:
+
+```json
+{ "status": "ok", "database": "up", "databaseLatencyMs": 39, "rules": 41, "nlp": "unavailable" }
+```
+
+`"nlp": "unavailable"` is expected unless you did step 5. Scans still run.
+
+> If 5173 is taken, Vite falls back to 5174. That origin is already in the backend's CORS allowlist,
+> but any other port will be blocked. Free 5173 or add the port to `FRONTEND_URL` in `backend/.env`
+> and restart.
+
+### Running the pieces separately
+
+Only needed when working on one half, or when you prefer Docker for the database. Each is a separate
+terminal.
+
+| Command (repository root) | Starts |
+|---|---|
+| `npm run db:local` | embedded PostgreSQL + backend API |
+| `npm run dev:frontend` | frontend only |
+| `npm run dev:backend` | backend only, against `DATABASE_URL` in `backend/.env` |
+
+With Docker as the database instead — Docker Desktop on Windows Home requires WSL2, so if
+`docker info` errors use the default path above:
 
 ```bash
-docker compose up -d
+npm run db:up
 ```
 
 ```bash
-npx prisma migrate deploy
+npm run db:migrate
 ```
 
 ```bash
 npm run db:seed
 ```
 
-> Docker Desktop on Windows Home requires WSL2. If `docker info` errors, use Path A.
+```bash
+npm run dev:backend
+```
 
 ---
 
-## 4. Start the backend
-
-**Path A:**
-
-```bash
-npm run db:local
-```
-
-This starts PostgreSQL *and* the API together. Leave it running.
-
-**Path B:**
-
-```bash
-npm run dev
-```
-
-Either way you should see:
-
-```
-INFO: rule pack loaded  rules: 41
-INFO: database connection ok
-INFO: DPDPA Sentinel backend listening  port: 4000
-```
-
-Confirm in a browser or another terminal — <http://localhost:4000/api/health>:
-
-```json
-{ "status": "ok", "database": "up", "databaseLatencyMs": 39, "rules": 41, "nlp": "unavailable" }
-```
-
-`"nlp": "unavailable"` is expected unless you did step 7. Scans still run.
-
----
-
-## 5. Start the frontend
-
-Open a **second terminal**. From the repository root:
-
-```bash
-cd frontend
-```
-
-```bash
-cp .env.example .env.local
-```
-
-```bash
-npm run dev
-```
-
-Vite prints the URL — normally <http://localhost:5173>.
-
-> If 5173 is taken, Vite falls back to 5174. That origin is already in the backend's CORS allowlist,
-> but any other port will be blocked. Free 5173 or add the port to `FRONTEND_URL` in `backend/.env`
-> and restart the backend.
-
----
-
-## 6. Run a scan
+## 4. Run a scan
 
 1. Open <http://localhost:5173>. You will land on **Secure Sign-In**.
 2. Click **Create one** and register. The password must be at least 10 characters.
@@ -180,7 +151,7 @@ Vite prints the URL — normally <http://localhost:5173>.
 
 ---
 
-## 7. Optional — the NLP service
+## 5. Optional — the NLP service
 
 Entirely optional. Without it, scans use the deterministic rule engine and are flagged
 `nlpAvailable: false`. With it, semantic similarity contributes to *confidence* only — it can never
@@ -254,11 +225,11 @@ python -m pytest tests -q
 
 ## Stopping
 
-`Ctrl+C` in each terminal. The database harness waits for PostgreSQL to release its port, so you can
-immediately run `npm run db:local` again.
+`Ctrl+C` in the terminal running `npm run dev` — it forwards the signal to the backend, the frontend
+and PostgreSQL. The database harness waits for PostgreSQL to release its port, so you can start again
+immediately.
 
-Your data persists in `backend/.pgdata`. You only need `db:local:setup` again after changing the
-Prisma schema or the rule pack.
+Your data persists in `backend/.pgdata` and is picked up by the next `npm run dev`.
 
 ---
 
@@ -267,12 +238,15 @@ Prisma schema or the rule pack.
 | Symptom | Cause and fix |
 |---|---|
 | `The token '&&' is not a valid statement separator` | Windows PowerShell 5.1. Run each command separately, as written above. |
-| `Missing script: "db:local:setup"` | Run it from the repository root or from `backend/` — both work. |
-| `port 55432 is still in use after 15s` | You already have `npm run db:local` running in another terminal. Switch to it and press Ctrl+C, then retry. This guard is what stops two servers fighting over one database. |
-| `embedded postgres harness failed` | Delete `backend/.pgdata` and re-run `npm run db:local:setup`. |
-| Health returns 503 `"database":"down"` | PostgreSQL is not running. Start step 3/4 again. |
+| `openssl : The term 'openssl' is not recognized` | You do not need openssl. `npm run dev` generates the secret itself. |
+| `port 55432 is still in use after 15s` | The stack is already running in another terminal. Switch to it and press Ctrl+C, then retry. This guard is what stops two servers fighting over one database. |
+| `embedded postgres harness failed` | Delete `backend/.pgdata` and re-run `npm run dev` — the schema and rule pack are rebuilt automatically. |
+| Health returns 503 `"database":"down"` | PostgreSQL is not running. Ctrl+C and run `npm run dev` again. |
 | API calls fail with a CORS error | The frontend is on a port not in `FRONTEND_URL`. Add it in `backend/.env` and restart the backend. |
-| `JWT_SECRET must be at least 32 characters` | Step 2 was skipped. |
+| `JWT_SECRET must be at least 32 characters` | `backend/.env` was overwritten by a stray `cp`. Run `npm run setup`, or just `npm run dev`. |
+| *Cannot reach the DPDPA Sentinel backend* in the browser | The frontend is running without the backend. Stop it and use `npm run dev` from the repository root, which starts both. |
+| *This site is hosted, but it is calling http://localhost:4000* | You are on the deployed URL (e.g. the Vercel one), not the local app. A hosted page cannot reach a backend on your machine. Use <http://localhost:5173> for local work, or set `VITE_API_URL` on the host to a deployed backend and redeploy. |
+| Backend log shows `Origin ... is not allowed` with status 403 | The page's origin is not in `FRONTEND_URL` in `backend/.env`. The browser reports the blocked request as a network failure, so the UI says "cannot reach" even though the backend answered. |
 | Blank page after sign-in | Hard-reload (`Ctrl+Shift+R`) to clear a stale bundle. |
 | pip: `Defaulting to user installation` | The virtualenv is not activated. Activate it, then reinstall. |
 | pip: `No matching distribution found for spacy` | An exact pin with no wheel for your Python. `requirements.txt` now uses ranges — pull the latest and retry. |

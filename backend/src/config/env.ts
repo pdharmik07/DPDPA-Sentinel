@@ -12,6 +12,10 @@ const schema = z.object({
   JWT_SECRET: z.string().min(32, 'JWT_SECRET must be at least 32 characters'),
   JWT_EXPIRES_IN: z.string().default('12h'),
   BACKEND_PORT: z.coerce.number().int().positive().default(4000),
+  // Managed hosts (Render, Railway, Fly, Heroku) inject the port to bind as
+  // PORT and route external traffic to it. Binding BACKEND_PORT instead makes
+  // the service look dead to the platform's health check.
+  PORT: z.coerce.number().int().positive().optional(),
   FRONTEND_URL: z.string().default('http://localhost:5173'),
   NLP_SERVICE_URL: z.string().url().default('http://localhost:8000'),
   NLP_TIMEOUT_MS: z.coerce.number().int().positive().default(15000),
@@ -40,6 +44,9 @@ export const env = parsed.data;
 export const allowedOrigins = env.FRONTEND_URL.split(',')
   .map((o) => o.trim())
   .filter(Boolean);
+
+/** The port to bind: the platform's PORT wins, then BACKEND_PORT, then 4000. */
+export const port = env.PORT ?? env.BACKEND_PORT;
 
 export const isProd = env.NODE_ENV === 'production';
 export const isTest = env.NODE_ENV === 'test';

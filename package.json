@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "description": "DPDPA Sentinel — automated preliminary DPDPA 2023 / DPDP Rules 2025 compliance assessment platform",
   "scripts": {
-    "dev": "npm run dev --prefix frontend",
+    "setup": "node scripts/setup.mjs",
+    "dev": "node scripts/dev.mjs",
     "dev:frontend": "npm run dev --prefix frontend",
     "dev:backend": "npm run dev --prefix backend",
     "build": "npm run build --prefix frontend",
@@ -21,7 +22,8 @@
     "test:api": "npm run test:api --prefix backend",
     "verify": "npm run typecheck && npm test && npm run build",
     "db:local": "npm run db:local --prefix backend",
-    "db:local:setup": "npm run db:local:setup --prefix backend"
+    "db:local:setup": "npm run db:local:setup --prefix backend",
+    "dev:all": "node scripts/dev.mjs"
   },
   "engines": {
     "node": ">=20"

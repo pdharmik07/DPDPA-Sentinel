@@ -37,34 +37,60 @@ The frontend is a thin client: it validates the upload (size/extension) for imme
 npm run install:all
 ```
 
-Copy the backend env file and put a generated secret in it:
+Then start everything with one command, from the project root:
 
 ```bash
-cd backend
+npm run dev
+```
+
+There is no separate configuration step: `npm run dev` creates `backend/.env` and
+`frontend/.env.local` from their examples and generates a `JWT_SECRET` if one is missing. It never
+overwrites a file that already exists, so re-running it is always safe. To do just that part,
+`npm run setup`.
+
+That single command starts **the database, the backend API and the frontend** together, waits for
+the API and then prints the URL. Leave it running and open <http://localhost:5173>. Ctrl+C stops all
+three.
+
+The frontend on its own cannot do anything — every screen (register, login, upload, results) is an
+API call, so a frontend without a backend only ever shows *"Cannot reach the DPDPA Sentinel
+backend"*. That is why `npm run dev` starts the whole stack rather than just Vite.
+
+> **Use the local URL, not the deployed one.** A hosted build (Vercel and the like) cannot talk to a
+> backend running on your machine — `localhost` there means the *visitor's* computer, and browsers
+> block an HTTPS page from calling `http://localhost` outright. To make the public URL work for
+> anyone, the backend has to be hosted too: `render.yaml` at the repository root deploys the API and
+> its database in one step, and
+> [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md#making-the-public-url-work-vercel--render) has the
+> click-by-click guide.
+
+The database is an **embedded PostgreSQL** on port **55432** — no Docker, no admin rights, no global
+install. Its data lives in `backend/.pgdata` and persists between runs; migrations and the rule-pack
+seed are applied automatically on every start. Because the harness sets `DATABASE_URL` for the
+processes it wraps, the `DATABASE_URL` in `backend/.env` is not used on this path.
+
+The first start takes a minute or two while PostgreSQL initialises. Later starts take seconds.
+
+### Running the parts separately
+
+Useful when debugging one half, or when you prefer Docker for the database.
+
+| Command (project root) | What it runs |
+| --- | --- |
+| `npm run dev` | database + backend + frontend (the normal one) |
+| `npm run db:local` | embedded PostgreSQL + backend API only |
+| `npm run dev:frontend` | frontend only |
+| `npm run dev:backend` | backend only, against the `DATABASE_URL` in `backend/.env` |
+| `npm run db:up` / `db:down` | PostgreSQL 16 in Docker, on the standard port 5432 |
+
+With Docker as the database, migrate and seed once, then run the backend against it:
+
+```bash
+npm run db:up
 ```
 
 ```bash
-cp .env.example .env
-```
-
-```bash
-openssl rand -base64 48
-```
-
-Paste that value into `backend/.env` as `JWT_SECRET`. Then pick **one** of the two database paths below.
-
-### Path A — Docker
-
-```bash
-docker compose up -d
-```
-
-```bash
-cd backend
-```
-
-```bash
-npx prisma migrate deploy
+npm run db:migrate
 ```
 
 ```bash
@@ -72,44 +98,7 @@ npm run db:seed
 ```
 
 ```bash
-npm run dev
-```
-
-### Path B — no Docker
-
-Docker Desktop on Windows Home needs WSL2, which is not always available. The backend ships an
-embedded PostgreSQL harness that needs neither Docker nor admin rights. It runs on port **55432**
-and sets `DATABASE_URL` for the commands it wraps, so it does not use the `DATABASE_URL` in
-`backend/.env`.
-
-Migrate and seed once:
-
-```bash
-cd backend
-```
-
-```bash
-npm run db:local:setup
-```
-
-Then start PostgreSQL **and** the API together — this is the command to leave running:
-
-```bash
-npm run db:local
-```
-
-### Frontend
-
-```bash
-cd frontend
-```
-
-```bash
-cp .env.example .env.local
-```
-
-```bash
-npm run dev
+npm run dev:backend
 ```
 
 ### Optional NLP service
@@ -151,6 +140,9 @@ uvicorn app.main:app --port 8000
 
 ## Commands
 
+`npm run dev` from the repository root is the everyday command — it starts the database, the backend
+and the frontend together. The rest are for working on one piece at a time.
+
 | | Frontend (`frontend/`) | Backend (`backend/`) |
 |---|---|---|
 | dev | `npm run dev` | `npm run dev` |
@@ -158,7 +150,7 @@ uvicorn app.main:app --port 8000
 | typecheck | `npm run typecheck` | `npm run typecheck` |
 | test | — | `npm test` |
 
-From the repository root: `npm run dev:frontend` · `npm run dev:backend` · `npm run build` · `npm test` · `npm run typecheck` · `npm run db:up` · `npm run db:migrate` · `npm run db:seed`
+From the repository root: `npm run dev` · `npm run dev:frontend` · `npm run dev:backend` · `npm run db:local` · `npm run build` · `npm test` · `npm run typecheck` · `npm run db:up` · `npm run db:migrate` · `npm run db:seed`
 
 Inside `backend/`: `npx prisma migrate dev` · `npm run db:reset` · `npx prisma studio`
 

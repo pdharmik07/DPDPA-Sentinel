@@ -7,15 +7,30 @@
  * or amending a rule is a data change, not a code change.
  */
 
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { z } from 'zod';
 import type { CompiledRule, RuleDefinition, RulePackManifest } from './types.js';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-/** backend/src/engine -> backend/rules */
-const RULES_ROOT = path.resolve(here, '../../rules');
+/**
+ * The rule pack is versioned data, not code, so tsc does not emit it into
+ * dist/. That puts it at a different depth depending on how the server was
+ * started: src/engine/ under tsx, dist/src/engine/ once compiled. Assuming one
+ * layout meant the production build died at boot with ENOENT on
+ * dist/rules/…/rules.json, so both are tried.
+ */
+function resolveRulesRoot(): string {
+  const candidates = [path.resolve(here, '../../rules'), path.resolve(here, '../../../rules')];
+  const found = candidates.find((dir) => existsSync(dir));
+  if (!found) {
+    throw new Error(`rule pack directory not found. Looked in: ${candidates.join(', ')}`);
+  }
+  return found;
+}
+
+const RULES_ROOT = resolveRulesRoot();
 
 export const DEFAULT_PACK = 'dpdpa-v1.0.0';
 

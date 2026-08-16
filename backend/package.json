@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
+    "build:prod": "prisma generate && tsc",
+    "start": "node dist/src/server.js",
+    "start:prod": "prisma migrate deploy && node dist/prisma/seed.js && node dist/src/server.js",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -18,6 +20,7 @@
     "db:seed": "tsx prisma/seed.ts",
     "db:reset": "prisma migrate reset --force",
     "db:local": "tsx scripts/withDb.ts \"npm run dev\" --persist",
+    "db:local:dev": "tsx scripts/withDb.ts \"npx prisma migrate deploy && npx tsx prisma/seed.ts && npm run dev\" --persist",
     "db:local:setup": "tsx scripts/withDb.ts \"npx prisma migrate deploy && npx tsx prisma/seed.ts\" --persist",
     "test:engine": "vitest run tests/engine.test.ts",
     "test:api": "vitest run tests/api.integration.test.ts"
