@@ -12,7 +12,8 @@ import { env } from '../config/env.js';
 import { logger } from '../config/logger.js';
 import type { CompiledRule, NlpAnalysis, PreparedDocument } from '../engine/types.js';
 
-const responseSchema = z.object({
+/** Exported so tests can assert the real service payload satisfies it. */
+export const nlpResponseSchema = z.object({
   model: z.string(),
   byRule: z.record(
     z.object({
@@ -23,7 +24,12 @@ const responseSchema = z.object({
           index: z.number().int().nonnegative(),
           similarity: z.number().min(0).max(1),
           negated: z.boolean(),
-          lemmas: z.array(z.string()).optional(),
+          // `.nullish()`, not `.optional()`. Pydantic serialises an unset
+          // Optional field as JSON `null`, and `.optional()` accepts only
+          // `undefined` — so every response failed validation and each scan
+          // silently fell back to the deterministic engine. The fallback was
+          // working so well that a completely broken integration looked normal.
+          lemmas: z.array(z.string()).nullish(),
         }),
       ),
     }),
@@ -69,7 +75,7 @@ export async function analyzeWithNlp(
       return NLP_UNAVAILABLE;
     }
 
-    const parsed = responseSchema.safeParse(await res.json());
+    const parsed = nlpResponseSchema.safeParse(await res.json());
     if (!parsed.success) {
       logger.warn({ requestId }, 'NLP service response did not match the expected shape; continuing without it');
       return NLP_UNAVAILABLE;

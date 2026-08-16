@@ -229,6 +229,16 @@ uvicorn app.main:app --port 8000
 
 First run downloads roughly 90 MB of models, plus PyTorch, which is a further ~2 GB.
 
+**Cold start.** The first `/analyze` call loads the models from disk and took ~44 seconds when
+measured. `NLP_TIMEOUT_MS` is 45s to absorb that, but the cleanest fix is to load them at startup —
+set `NLP_WARM_START=true` in `nlp-service/.env` before launching uvicorn. Without it, the very first
+scan may fall back to the deterministic engine and report `nlpAvailable: false`; every scan after
+that uses the semantic layer (~1.2s for a typical policy).
+
+**Confirming it is actually in use.** `GET /api/health` showing `"nlp": "available"` only means the
+service is reachable. What proves it contributed is a completed scan reporting `nlpAvailable: true`,
+and findings carrying `semanticSupport: true`.
+
 Verify at <http://localhost:8000/health>, and the backend's own health will flip to
 `"nlp": "available"` on its next check.
 

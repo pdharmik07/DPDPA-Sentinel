@@ -163,7 +163,8 @@ export interface NlpSentenceSignal {
   /** 0..1 cosine similarity against the best-matching rule concept. */
   similarity: number;
   negated: boolean;
-  lemmas?: string[];
+  /** Null when the service omits it — Pydantic sends unset Optionals as null. */
+  lemmas?: string[] | null;
 }
 
 export interface NlpRuleSignal {

@@ -25,7 +25,9 @@ MIN_REPORTED_SIMILARITY = 0.35
 MAX_SENTENCES_PER_RULE = 12
 
 
-@router.post("/analyze", response_model=AnalyzeResponse)
+# exclude_none keeps unset Optional fields out of the JSON entirely rather
+# than emitting them as null, which is friendlier to strict clients.
+@router.post("/analyze", response_model=AnalyzeResponse, response_model_exclude_none=True)
 def analyze(request: AnalyzeRequest) -> AnalyzeResponse:
     if not request.sentences or not request.rules:
         return AnalyzeResponse(model=nlp.EMBEDDING_MODEL_NAME, byRule={})
